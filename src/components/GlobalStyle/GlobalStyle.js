@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
-  .page {
+const GlobalStyle = createGlobalStyle`  
+  html {
     background-color: #2A2C2F;
     padding: 30px;
     min-width: 320px;  
