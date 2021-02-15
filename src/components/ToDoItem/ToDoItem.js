@@ -19,7 +19,7 @@ class ToDoItem extends React.Component {
   render() {
     return (
       <li>
-        <ToDoText>Hello!</ToDoText>
+        <ToDoText>{this.props.text}</ToDoText>
       </li>
     );
   }

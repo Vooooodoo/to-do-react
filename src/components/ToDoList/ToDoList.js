@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
 import ToDoItem from '../ToDoItem/ToDoItem';
 
 const ToDoListStyled = styled.ul`
@@ -9,13 +10,18 @@ const ToDoListStyled = styled.ul`
 `;
 
 class ToDoList extends React.Component {
+  static contextType = ToDoItemsContext;
+
   render() {
     return (
       <section>
         <ToDoListStyled>
-          <ToDoItem />
-          <ToDoItem />
-          <ToDoItem />
+          {this.context.toDoItems.map((item) => (
+            (<ToDoItem
+              key={item.id}
+              text={item.text}
+            />)
+          ))}
         </ToDoListStyled>
       </section>
     );

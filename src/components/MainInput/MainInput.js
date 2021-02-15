@@ -16,8 +16,16 @@ class MainInput extends React.Component {
   static contextType = ToDoItemsContext;
 
   handleEnter = (evt) => {
-    if (evt.key === 'Enter' && this.context.value.trim()) {
-      console.log(this.context.value.trim());
+    if (evt.key === 'Enter' && this.context.inputValue) {
+      let toDoItemsArr = this.context.toDoItems;
+      const id = Date.now();
+      const newToDoItem = {
+        id,
+        text: this.context.inputValue,
+      }
+
+      toDoItemsArr.push(newToDoItem);
+      localStorage.setItem('to-do-items', JSON.stringify(toDoItemsArr));
     }
   }
 

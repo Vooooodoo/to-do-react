@@ -9,12 +9,13 @@ class App extends React.Component {
     super();
 
     this.state = {
-      value: '',
+      inputValue: '',
+      toDoItems: localStorage.getItem('to-do-items') ? JSON.parse(localStorage.getItem('to-do-items')) : [],
     };
   }
 
   handleMainInputChange = (evt) => {
-    this.setState({ value: evt.target.value });
+    this.setState({ inputValue: evt.target.value.trim() });
   }
 
   render() {
