@@ -1,18 +1,31 @@
 import React from 'react';
+import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
 import GlobalStyle from '../GlobalStyle/GlobalStyle';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 
 class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      value: '',
+    };
+  }
+
+  handleMainInputChange = (evt) => {
+    this.setState({ value: evt.target.value });
+  }
+
   render() {
     return (
-      <>
-        <GlobalStyle />        
+      <ToDoItemsContext.Provider value={this.state}>
+        <GlobalStyle />
         <Header />
-        <Main />
-      </>
+        <Main onChange={this.handleMainInputChange}/>
+      </ToDoItemsContext.Provider>
     );
-  }  
+  }
 }
 
 export default App;
@@ -24,7 +37,7 @@ export default App;
 //         <Title lang="en" className="header__title" isSelected={true}>To Do App</Title>
 //       </header>
 //     );
-//   }  
+//   }
 // }
 
 // const StyledHeader = styled.header`

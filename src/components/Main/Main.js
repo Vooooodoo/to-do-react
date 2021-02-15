@@ -6,11 +6,11 @@ class Main extends React.Component {
   render() {
     return (
       <main>
-        <MainInput />
+        <MainInput onChange={this.props.onChange} />
         <ToDoList />
       </main>
     );
-  }  
+  }
 }
 
 export default Main;
