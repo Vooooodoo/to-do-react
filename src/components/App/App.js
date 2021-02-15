@@ -18,12 +18,32 @@ class App extends React.Component {
     this.setState({ inputValue: evt.target.value.trim() });
   }
 
+  handleEnter = (evt) => {
+    if (evt.key === 'Enter' && this.state.inputValue) {
+      const id = Date.now();
+      const newToDoItem = {
+        id,
+        text: this.state.inputValue,
+      }
+      const newToDoItems = [newToDoItem].concat(this.state.toDoItems);
+
+      localStorage.setItem('to-do-items', JSON.stringify(newToDoItems));
+      this.setState({
+        inputValue: '',
+        toDoItems: newToDoItems,
+      });
+    }
+  }
+
   render() {
     return (
       <ToDoItemsContext.Provider value={this.state}>
         <GlobalStyle />
         <Header />
-        <Main onChange={this.handleMainInputChange}/>
+        <Main
+          inputValue={this.state.inputValue}
+          onChange={this.handleMainInputChange}
+          onKeyDown={this.handleEnter} />
       </ToDoItemsContext.Provider>
     );
   }

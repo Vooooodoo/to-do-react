@@ -6,7 +6,11 @@ class Main extends React.Component {
   render() {
     return (
       <main>
-        <MainInput onChange={this.props.onChange} />
+        <MainInput
+          inputValue={this.props.inputValue}
+          onChange={this.props.onChange}
+          onKeyDown={this.props.onKeyDown}
+        />
         <ToDoList />
       </main>
     );
