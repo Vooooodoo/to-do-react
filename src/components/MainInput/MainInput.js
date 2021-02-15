@@ -1,28 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Section = styled.section`
-  display: flex;
-  justify-content: center;      
-`;
-
-const Input = styled.input`      
-  flex-basis: 550px;
-  height: 65px;  
+const Input = styled.input`
+  width: 100%;
+  height: 65px;
   box-sizing: border-box;
   font-size: 24px;
-  padding: 0 10px;
-  border: none;      
+  padding: 0 15px;
+  border: none;
+  margin-bottom: 10px;
 `;
 
 class MainInput extends React.Component {
   render() {
     return (
-      <Section>
+      <section>
         <Input type="text" maxLength="10" placeholder="What needs to be done?" />
-      </Section>
+      </section>
     );
-  }  
+  }
 }
 
 export default MainInput;

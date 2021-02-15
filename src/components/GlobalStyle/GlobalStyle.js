@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`  
-  html {
+  html {    
     background-color: #2A2C2F;
     padding: 30px;
     min-width: 320px;  
@@ -12,6 +12,11 @@ const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
+  }
+
+  #root {
+    max-width: 550px;
+    margin: 0 auto;
   }
 `
 export default GlobalStyle;
