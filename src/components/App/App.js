@@ -15,15 +15,15 @@ class App extends React.Component {
   }
 
   handleMainInputChange = (evt) => {
-    this.setState({ inputValue: evt.target.value.trim() });
+    this.setState({ inputValue: evt.target.value });
   }
 
   handleEnter = (evt) => {
-    if (evt.key === 'Enter' && this.state.inputValue) {
+    if (evt.key === 'Enter' && this.state.inputValue.trim()) {
       const id = Date.now();
       const newToDoItem = {
         id,
-        text: this.state.inputValue,
+        text: this.state.inputValue.trim(),
       }
       const newToDoItems = [newToDoItem].concat(this.state.toDoItems);
 
@@ -35,6 +35,16 @@ class App extends React.Component {
     }
   }
 
+  handleDelBtn = (evt) => {
+    const toDoItem = evt.target.parentNode;
+    const newToDoItems = this.state.toDoItems.filter(item => Number(toDoItem.id) !== item.id);
+
+    localStorage.setItem('to-do-items', JSON.stringify(newToDoItems));
+    this.setState({
+      toDoItems: newToDoItems,
+    });
+  }
+
   render() {
     return (
       <ToDoItemsContext.Provider value={this.state}>
@@ -43,7 +53,9 @@ class App extends React.Component {
         <Main
           inputValue={this.state.inputValue}
           onChange={this.handleMainInputChange}
-          onKeyDown={this.handleEnter} />
+          onKeyDown={this.handleEnter}
+          onDelBtnClick={this.handleDelBtn}
+        />
       </ToDoItemsContext.Provider>
     );
   }

@@ -19,7 +19,9 @@ class ToDoList extends React.Component {
           {this.context.toDoItems.map((item) => (
             (<ToDoItem
               key={item.id}
+              id={item.id}
               text={item.text}
+              onDelBtnClick={this.props.onDelBtnClick}
             />)
           ))}
         </ToDoListStyled>

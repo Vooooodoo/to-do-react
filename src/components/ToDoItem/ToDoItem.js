@@ -1,5 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import DelBtn from '../DelBtn/DelBtn';
+
+const ToDoItemStyled = styled.li`
+  position: relative;
+`
 
 const ToDoText = styled.p`
   background-color: white;
@@ -18,9 +23,10 @@ const ToDoText = styled.p`
 class ToDoItem extends React.Component {
   render() {
     return (
-      <li>
+      <ToDoItemStyled id={this.props.id}>
         <ToDoText>{this.props.text}</ToDoText>
-      </li>
+        <DelBtn onDelBtnClick={this.props.onDelBtnClick}/>
+      </ToDoItemStyled>
     );
   }
 }

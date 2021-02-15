@@ -11,7 +11,7 @@ class Main extends React.Component {
           onChange={this.props.onChange}
           onKeyDown={this.props.onKeyDown}
         />
-        <ToDoList />
+        <ToDoList onDelBtnClick={this.props.onDelBtnClick} />
       </main>
     );
   }
