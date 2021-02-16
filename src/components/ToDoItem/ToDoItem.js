@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import CheckBox from '../CheckBox/CheckBox';
 import DelBtn from '../DelBtn/DelBtn';
 
 const StyledToDoItem = styled.li`
   position: relative;
 
-  :hover .del-btn {
+  :hover .checkbox, :hover .del-btn {
     opacity: 1;
   }
 `
@@ -29,6 +30,7 @@ class ToDoItem extends React.Component {
     return (
       <StyledToDoItem id={this.props.id}>
         <ToDoText>{this.props.text}</ToDoText>
+        <CheckBox />
         <DelBtn onDelBtnClick={this.props.onDelBtnClick}/>
       </StyledToDoItem>
     );

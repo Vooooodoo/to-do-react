@@ -11,12 +11,13 @@ const Btn = styled.button`
   border: none;
   padding: 0;
   margin: 0;
-  transition: .2s linear;
+  transition: .3s linear;
   text-transform: uppercase;
   font-size: 30px;
   cursor: pointer;
   background-color: #af1045;
   opacity: 0;
+  border-radius: 3px;
 `;
 
 class DelBtn extends React.Component {
