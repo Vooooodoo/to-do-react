@@ -1,10 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`  
-  html {    
+const GlobalStyle = createGlobalStyle`
+  html {
     background-color: #2A2C2F;
     padding: 30px;
-    min-width: 320px;  
+    min-width: 320px;
     font-family: 'Roboto', Arial, sans-serif;
     color: #FFFFFF;
     -webkit-font-smoothing: antialiased;
@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
     -moz-text-size-adjust: 100%;
   }
 
-  #root {
+  main, footer {
     max-width: 550px;
     margin: 0 auto;
   }
