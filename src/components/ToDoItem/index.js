@@ -34,7 +34,7 @@ class ToDoItem extends React.Component {
         <CheckBox
           toDoItemId={this.props.id}
           isChecked={this.props.isChecked}
-          onCheckboxClick={this.props.onCheckboxClick}
+          onCheckboxChange={this.props.onCheckboxChange}
         />
         <DelBtn
           toDoItemId={this.props.id}

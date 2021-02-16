@@ -70,7 +70,7 @@ class App extends React.Component {
           inputValue={this.state.inputValue}
           onChange={this.handleMainInputChange}
           onKeyDown={this.handleEnter}
-          onCheckboxClick={this.handleCheckbox}
+          onCheckboxChange={this.handleCheckbox}
           onDelBtnClick={this.handleDelBtn}
         />
         <Footer />
