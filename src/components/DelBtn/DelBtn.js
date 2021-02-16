@@ -16,16 +16,13 @@ const Btn = styled.button`
   font-size: 30px;
   cursor: pointer;
   background-color: #af1045;
-
-  :hover {
-    opacity: .8;
-  }
+  opacity: 0;
 `;
 
 class DelBtn extends React.Component {
   render() {
     return (
-      <Btn type="button" aria-label="Удалить дело." onClick={this.props.onDelBtnClick}>x</Btn>
+      <Btn className="del-btn" type="button" aria-label="Удалить дело." onClick={this.props.onDelBtnClick}>x</Btn>
     );
   }
 }

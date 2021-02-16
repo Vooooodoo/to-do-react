@@ -2,8 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import DelBtn from '../DelBtn/DelBtn';
 
-const ToDoItemStyled = styled.li`
+const StyledToDoItem = styled.li`
   position: relative;
+
+  :hover .del-btn {
+    opacity: 1;
+  }
 `
 
 const ToDoText = styled.p`
@@ -23,10 +27,10 @@ const ToDoText = styled.p`
 class ToDoItem extends React.Component {
   render() {
     return (
-      <ToDoItemStyled id={this.props.id}>
+      <StyledToDoItem id={this.props.id}>
         <ToDoText>{this.props.text}</ToDoText>
         <DelBtn onDelBtnClick={this.props.onDelBtnClick}/>
-      </ToDoItemStyled>
+      </StyledToDoItem>
     );
   }
 }

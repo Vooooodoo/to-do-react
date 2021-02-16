@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
 import ToDoItem from '../ToDoItem/ToDoItem';
 
-const ToDoListStyled = styled.ul`
+const StyledToDoList = styled.ul`
   padding: 0;
   list-style: none;
   margin: 0;
@@ -15,7 +15,7 @@ class ToDoList extends React.Component {
   render() {
     return (
       <section>
-        <ToDoListStyled>
+        <StyledToDoList>
           {this.context.toDoItems.map((item) => (
             (<ToDoItem
               key={item.id}
@@ -24,7 +24,7 @@ class ToDoList extends React.Component {
               onDelBtnClick={this.props.onDelBtnClick}
             />)
           ))}
-        </ToDoListStyled>
+        </StyledToDoList>
       </section>
     );
   }
