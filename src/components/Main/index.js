@@ -1,12 +1,12 @@
 import React from 'react';
-import MainInput from '../MainInput';
+import CreateInput from '../CreateInput';
 import ToDoList from '../ToDoList';
 
 class Main extends React.Component {
   render() {
     return (
       <main>
-        <MainInput
+        <CreateInput
           inputValue={this.props.inputValue}
           onChange={this.props.onChange}
           onKeyDown={this.props.onKeyDown}

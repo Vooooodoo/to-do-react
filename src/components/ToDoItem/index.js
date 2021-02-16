@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import CheckBox from '../CheckBox';
-import DelBtn from '../DelBtn';
+import Checkbox from '../Checkbox';
+import DeleteButton from '../DeleteButton';
 
 const StyledToDoItem = styled.li`
   position: relative;
@@ -31,12 +31,12 @@ class ToDoItem extends React.Component {
     return (
       <StyledToDoItem>
         <ToDoText isCompleted={this.props.isCompleted}>{this.props.text}</ToDoText>
-        <CheckBox
+        <Checkbox
           toDoItemId={this.props.id}
           isChecked={this.props.isChecked}
           onCheckboxChange={this.props.onCheckboxChange}
         />
-        <DelBtn
+        <DeleteButton
           toDoItemId={this.props.id}
           onDelBtnClick={this.props.onDelBtnClick}
         />
