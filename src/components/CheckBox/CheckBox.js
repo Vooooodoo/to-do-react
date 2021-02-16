@@ -20,6 +20,7 @@ class CheckBox extends React.Component {
         className="checkbox"
         type="checkbox"
         onClick={this.props.onCheckboxClick}
+        checked={this.props.isChecked}
       />
     );
   }

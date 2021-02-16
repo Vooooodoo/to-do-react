@@ -24,7 +24,7 @@ class App extends React.Component {
       const newToDoItem = {
         id,
         text: this.state.inputValue.trim(),
-        completed: false,
+        isCompleted: false,
       }
       const newToDoItems = [newToDoItem].concat(this.state.toDoItems);
 
@@ -40,7 +40,7 @@ class App extends React.Component {
     const toDoItem = evt.target.parentNode;
     const newToDoItems = this.state.toDoItems.map(item => {
       if (Number(toDoItem.id) === item.id) {
-        item.completed = evt.target.checked;
+        item.isCompleted = evt.target.checked;
       }
 
       return item;
@@ -80,19 +80,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// class Header extends React.Component {
-//   render() {
-//     return (
-//       <header>
-//         <Title lang="en" className="header__title" isSelected={true}>To Do App</Title>
-//       </header>
-//     );
-//   }
-// }
-
-// const StyledHeader = styled.header`
-//   .header__title {
-//     color: ${({isSelected}) => (isSelected ? 'red': 'blue')};
-//   }
-// `;

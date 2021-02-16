@@ -23,7 +23,14 @@ const Btn = styled.button`
 class DelBtn extends React.Component {
   render() {
     return (
-      <Btn className="del-btn" type="button" aria-label="Удалить дело." onClick={this.props.onDelBtnClick}>x</Btn>
+      <Btn
+        className="del-btn"
+        type="button"
+        aria-label="Удалить дело."
+        onClick={this.props.onDelBtnClick}
+      >
+        x
+      </Btn>
     );
   }
 }
