@@ -1,5 +1,6 @@
 import React from 'react';
 import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
+import { addDataToLocalStorage, getDataFromLocalStorage } from '../../utils/helpers';
 import Footer from '../Footer';
 import GlobalStyle from '../GlobalStyle';
 import Header from '../Header';
@@ -11,7 +12,7 @@ class App extends React.Component {
 
     this.state = {
       inputValue: '',
-      toDoItems: localStorage.getItem('to-do-items') ? JSON.parse(localStorage.getItem('to-do-items')) : [],
+      toDoItems: getDataFromLocalStorage() ? JSON.parse(getDataFromLocalStorage()) : [],
     };
   }
 
@@ -29,7 +30,7 @@ class App extends React.Component {
       }
       const newToDoItems = [newToDoItem, ...this.state.toDoItems];
 
-      localStorage.setItem('to-do-items', JSON.stringify(newToDoItems));
+      addDataToLocalStorage(newToDoItems);
       this.setState({
         inputValue: '',
         toDoItems: newToDoItems,
@@ -46,7 +47,7 @@ class App extends React.Component {
       return item;
     });
 
-    localStorage.setItem('to-do-items', JSON.stringify(newToDoItems));
+    addDataToLocalStorage(newToDoItems);
     this.setState({
       toDoItems: newToDoItems,
     });
@@ -55,7 +56,7 @@ class App extends React.Component {
   handleDelBtn = (evtToDoId) => {
     const newToDoItems = this.state.toDoItems.filter(item => evtToDoId !== item.id);
 
-    localStorage.setItem('to-do-items', JSON.stringify(newToDoItems));
+    addDataToLocalStorage(newToDoItems);
     this.setState({
       toDoItems: newToDoItems,
     });
