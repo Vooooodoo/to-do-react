@@ -21,6 +21,8 @@ class ToDoList extends React.Component {
               key={item.id}
               id={item.id}
               text={item.text}
+              completed={item.completed}
+              onCheckboxClick={this.props.onCheckboxClick}
               onDelBtnClick={this.props.onDelBtnClick}
             />)
           ))}

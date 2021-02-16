@@ -23,14 +23,15 @@ const ToDoText = styled.p`
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-decoration: ${({completed}) => (completed ? 'line-through': 'none')};;
 `;
 
 class ToDoItem extends React.Component {
   render() {
     return (
       <StyledToDoItem id={this.props.id}>
-        <ToDoText>{this.props.text}</ToDoText>
-        <CheckBox />
+        <ToDoText completed={this.props.completed}>{this.props.text}</ToDoText>
+        <CheckBox onCheckboxClick={this.props.onCheckboxClick}/>
         <DelBtn onDelBtnClick={this.props.onDelBtnClick}/>
       </StyledToDoItem>
     );

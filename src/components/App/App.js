@@ -24,6 +24,7 @@ class App extends React.Component {
       const newToDoItem = {
         id,
         text: this.state.inputValue.trim(),
+        completed: false,
       }
       const newToDoItems = [newToDoItem].concat(this.state.toDoItems);
 
@@ -33,6 +34,22 @@ class App extends React.Component {
         toDoItems: newToDoItems,
       });
     }
+  }
+
+  handleCheckbox = (evt) => {
+    const toDoItem = evt.target.parentNode;
+    const newToDoItems = this.state.toDoItems.map(item => {
+      if (Number(toDoItem.id) === item.id) {
+        item.completed = evt.target.checked;
+      }
+
+      return item;
+    });
+
+    localStorage.setItem('to-do-items', JSON.stringify(newToDoItems));
+    this.setState({
+      toDoItems: newToDoItems,
+    });
   }
 
   handleDelBtn = (evt) => {
@@ -54,6 +71,7 @@ class App extends React.Component {
           inputValue={this.state.inputValue}
           onChange={this.handleMainInputChange}
           onKeyDown={this.handleEnter}
+          onCheckboxClick={this.handleCheckbox}
           onDelBtnClick={this.handleDelBtn}
         />
       </ToDoItemsContext.Provider>

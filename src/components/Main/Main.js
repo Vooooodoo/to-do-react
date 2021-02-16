@@ -11,7 +11,10 @@ class Main extends React.Component {
           onChange={this.props.onChange}
           onKeyDown={this.props.onKeyDown}
         />
-        <ToDoList onDelBtnClick={this.props.onDelBtnClick} />
+        <ToDoList
+          onCheckboxClick={this.props.onCheckboxClick}
+          onDelBtnClick={this.props.onDelBtnClick}
+        />
       </main>
     );
   }

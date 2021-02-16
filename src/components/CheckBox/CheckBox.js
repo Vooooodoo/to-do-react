@@ -16,7 +16,11 @@ const StyledCheckBox = styled.input`
 class CheckBox extends React.Component {
   render() {
     return (
-      <StyledCheckBox className="checkbox" type="checkbox" />
+      <StyledCheckBox
+        className="checkbox"
+        type="checkbox"
+        onClick={this.props.onCheckboxClick}
+      />
     );
   }
 }
