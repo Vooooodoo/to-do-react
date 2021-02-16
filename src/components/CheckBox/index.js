@@ -11,6 +11,7 @@ const StyledCheckBox = styled.input`
   transition: .3s linear;
   opacity: 0;
   cursor: pointer;
+  margin: 0;
 `;
 
 class CheckBox extends React.Component {
