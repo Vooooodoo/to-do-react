@@ -18,6 +18,10 @@ const Btn = styled.button`
   background-color: #af1045;
   opacity: 0;
   border-radius: 3px;
+
+  :hover {
+    background-color: #97113d;
+  }
 `;
 
 class DelBtn extends React.Component {
