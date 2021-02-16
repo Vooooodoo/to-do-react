@@ -29,13 +29,17 @@ const ToDoText = styled.p`
 class ToDoItem extends React.Component {
   render() {
     return (
-      <StyledToDoItem id={this.props.id}>
+      <StyledToDoItem>
         <ToDoText isCompleted={this.props.isCompleted}>{this.props.text}</ToDoText>
         <CheckBox
+          toDoItemId={this.props.id}
           isChecked={this.props.isChecked}
           onCheckboxClick={this.props.onCheckboxClick}
         />
-        <DelBtn onDelBtnClick={this.props.onDelBtnClick}/>
+        <DelBtn
+          toDoItemId={this.props.id}
+          onDelBtnClick={this.props.onDelBtnClick}
+        />
       </StyledToDoItem>
     );
   }

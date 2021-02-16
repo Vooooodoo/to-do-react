@@ -19,7 +19,7 @@ class CheckBox extends React.Component {
       <StyledCheckBox
         className="checkbox"
         type="checkbox"
-        onClick={this.props.onCheckboxClick}
+        onClick={evt => this.props.onCheckboxClick(evt, this.props.toDoItemId)}
         defaultChecked={this.props.isChecked}
       />
     );

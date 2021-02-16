@@ -37,11 +37,10 @@ class App extends React.Component {
     }
   }
 
-  handleCheckbox = (evt) => {
-    const toDoItem = evt.target.parentNode;
+  handleCheckbox = (evt, evtToDoId) => {
     const newToDoItems = this.state.toDoItems.map(item => {
-      if (Number(toDoItem.id) === item.id) {
-        item.isCompleted = !evt.target.checked;
+      if (evtToDoId === item.id) {
+        item.isCompleted = evt.target.checked;
       }
 
       return item;
@@ -53,9 +52,8 @@ class App extends React.Component {
     });
   }
 
-  handleDelBtn = (evt) => {
-    const toDoItem = evt.target.parentNode;
-    const newToDoItems = this.state.toDoItems.filter(item => Number(toDoItem.id) !== item.id);
+  handleDelBtn = (evtToDoId) => {
+    const newToDoItems = this.state.toDoItems.filter(item => evtToDoId !== item.id);
 
     localStorage.setItem('to-do-items', JSON.stringify(newToDoItems));
     this.setState({

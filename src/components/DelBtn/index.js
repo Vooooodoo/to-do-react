@@ -31,7 +31,7 @@ class DelBtn extends React.Component {
         className="del-btn"
         type="button"
         aria-label="Удалить дело."
-        onClick={this.props.onDelBtnClick}
+        onClick={() => this.props.onDelBtnClick(this.props.toDoItemId)}
       >
         x
       </Btn>
