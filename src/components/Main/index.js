@@ -1,6 +1,6 @@
 import React from 'react';
-import MainInput from '../MainInput/MainInput';
-import ToDoList from '../ToDoList/ToDoList';
+import MainInput from '../MainInput';
+import ToDoList from '../ToDoList';
 
 class Main extends React.Component {
   render() {

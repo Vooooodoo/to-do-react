@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import CheckBox from '../CheckBox/CheckBox';
-import DelBtn from '../DelBtn/DelBtn';
+import CheckBox from '../CheckBox';
+import DelBtn from '../DelBtn';
 
 const StyledToDoItem = styled.li`
   position: relative;

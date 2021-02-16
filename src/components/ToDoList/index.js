@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
-import ToDoItem from '../ToDoItem/ToDoItem';
+import ToDoItem from '../ToDoItem';
 
 const StyledToDoList = styled.ul`
   padding: 0;

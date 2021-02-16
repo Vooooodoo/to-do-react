@@ -1,8 +1,9 @@
 import React from 'react';
 import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
-import GlobalStyle from '../GlobalStyle/GlobalStyle';
-import Header from '../Header/Header';
-import Main from '../Main/Main';
+import Footer from '../Footer';
+import GlobalStyle from '../GlobalStyle';
+import Header from '../Header';
+import Main from '../Main';
 
 class App extends React.Component {
   constructor() {
@@ -26,7 +27,7 @@ class App extends React.Component {
         text: this.state.inputValue.trim(),
         isCompleted: false,
       }
-      const newToDoItems = [newToDoItem].concat(this.state.toDoItems);
+      const newToDoItems = [newToDoItem, ...this.state.toDoItems];
 
       localStorage.setItem('to-do-items', JSON.stringify(newToDoItems));
       this.setState({
@@ -40,7 +41,7 @@ class App extends React.Component {
     const toDoItem = evt.target.parentNode;
     const newToDoItems = this.state.toDoItems.map(item => {
       if (Number(toDoItem.id) === item.id) {
-        item.isCompleted = evt.target.checked;
+        item.isCompleted = !evt.target.checked;
       }
 
       return item;
@@ -74,6 +75,7 @@ class App extends React.Component {
           onCheckboxClick={this.handleCheckbox}
           onDelBtnClick={this.handleDelBtn}
         />
+        <Footer />
       </ToDoItemsContext.Provider>
     );
   }
