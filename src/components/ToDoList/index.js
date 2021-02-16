@@ -22,7 +22,6 @@ class ToDoList extends React.Component {
               id={item.id}
               text={item.text}
               isCompleted={item.isCompleted}
-              isChecked={item.isCompleted}
               onCheckboxChange={this.props.onCheckboxChange}
               onDelBtnClick={this.props.onDelBtnClick}
             />)

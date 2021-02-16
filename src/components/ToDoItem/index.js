@@ -33,7 +33,7 @@ class ToDoItem extends React.Component {
         <ToDoText isCompleted={this.props.isCompleted}>{this.props.text}</ToDoText>
         <Checkbox
           toDoItemId={this.props.id}
-          isChecked={this.props.isChecked}
+          isChecked={this.props.isCompleted}
           onCheckboxChange={this.props.onCheckboxChange}
         />
         <DeleteButton
