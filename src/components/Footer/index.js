@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
+import Radio from '../Radio';
 
 const StyledFooter = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: white;
   min-height: 32px;
   padding: 15px;
@@ -15,13 +19,34 @@ const Text = styled.p`
   margin: 0;
 `
 
-function Footer() {
+const Wrapper = styled.div`
+  display: flex;
+  flex-basis: 230px;
+  justify-content: space-between;
+`
+
+
+function Footer(props) {
   const toDoItems = React.useContext(ToDoItemsContext).toDoItems;
-  const itemsLeft = toDoItems.filter(item => !item.isCompleted);
+  const notCompletedItems = toDoItems.filter(item => !item.isCompleted);
 
   return (
     <StyledFooter>
-      <Text>{`${itemsLeft.length} items left`}</Text>
+      <Text>{`${notCompletedItems.length} items left`}</Text>
+      <Wrapper>
+        <Radio
+          text="All"
+          onRadioChange={props.onRadioChange}
+        />
+        <Radio
+          text="Active"
+          onRadioChange={props.onRadioChange}
+        />
+        <Radio
+          text="Completed"
+          onRadioChange={props.onRadioChange}
+        />
+      </Wrapper>
     </StyledFooter>
   );
 }

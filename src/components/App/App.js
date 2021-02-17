@@ -75,6 +75,34 @@ class App extends React.Component {
     });
   }
 
+  handleRadio = (evt) => {
+    this.state = {
+      toDoItems: JSON.parse(getDataFromLocalStorage()),
+    };
+
+    if (evt.target.value === 'All') {
+      this.setState({
+        toDoItems: JSON.parse(getDataFromLocalStorage()),
+      });
+    }
+
+    if (evt.target.value === 'Active') {
+      const activeItems = this.state.toDoItems.filter(item => !item.isCompleted);
+
+      this.setState({
+        toDoItems: activeItems,
+      });
+    }
+
+    if (evt.target.value === 'Completed') {
+      const completedItems = this.state.toDoItems.filter(item => item.isCompleted);
+
+      this.setState({
+        toDoItems: completedItems,
+      });
+    }
+  }
+
   render() {
     return (
       <ToDoItemsContext.Provider value={this.state}>
@@ -88,7 +116,9 @@ class App extends React.Component {
           onDelBtnClick={this.handleDelBtn}
         />
         {this.state.toDoItems.length > 0
-          && <Footer />
+          && <Footer
+               onRadioChange={this.handleRadio}
+             />
         }
       </ToDoItemsContext.Provider>
     );
