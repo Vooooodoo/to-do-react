@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
+import CreateInput from '../CreateInput';
 import ToDoItem from '../ToDoItem';
 
 const StyledToDoList = styled.ul`
@@ -16,14 +17,22 @@ function ToDoList(props) {
     <section>
       <StyledToDoList>
         {toDoItems.map((item) => (
-          (<ToDoItem
-            key={item.id}
-            id={item.id}
-            text={item.text}
-            isCompleted={item.isCompleted}
-            onCheckboxChange={props.onCheckboxChange}
-            onDelBtnClick={props.onDelBtnClick}
-          />)
+          item.isEditable
+            ? (<CreateInput
+                 key={item.id}
+                 inputValue={props.inputValue}
+                 onChange={props.onChange}
+                 onKeyDown={props.onKeyDown}
+               />)
+            : (<ToDoItem
+                 key={item.id}
+                 id={item.id}
+                 text={item.text}
+                 isCompleted={item.isCompleted}
+                 onCheckboxChange={props.onCheckboxChange}
+                 onDelBtnClick={props.onDelBtnClick}
+                 onToDoItemDblClick={props.onToDoItemDblClick}
+               />)
         ))}
       </StyledToDoList>
     </section>

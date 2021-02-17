@@ -9,7 +9,7 @@ const Input = styled.input`
   font-size: 24px;
   padding: 0 15px;
   border: none;
-  margin-bottom: 10px;
+  margin-bottom: 1px;
   outline-color: ${props => props.isMaxLength ? '#af1045' : 'black'};
   color: ${props => props.isMaxLength ? '#af1045' : 'black'};
 `;

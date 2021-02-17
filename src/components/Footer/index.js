@@ -27,7 +27,7 @@ const Text = styled.p`
   }
 `
 
-const Wrapper = styled.div`
+const Container = styled.div`
   display: flex;
   flex-basis: 230px;
   justify-content: space-between;
@@ -53,7 +53,7 @@ function Footer(props) {
     <StyledFooter>
       <Text>{`${notCompletedItems.length} items left`}</Text>
 
-      <Wrapper>
+      <Container>
         <Radio
           text="All"
           onRadioChange={props.onRadioChange}
@@ -66,7 +66,7 @@ function Footer(props) {
           text="Completed"
           onRadioChange={props.onRadioChange}
         />
-      </Wrapper>
+      </Container>
 
       {completedItems.length > 0
         && (<Button

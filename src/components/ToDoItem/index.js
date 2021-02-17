@@ -29,7 +29,7 @@ const ToDoText = styled.p`
 
 function ToDoItem(props) {
   return (
-    <StyledToDoItem>
+    <StyledToDoItem onDoubleClick={evt => props.onToDoItemDblClick(evt, props.id)}>
       <ToDoText isCompleted={props.isCompleted}>{props.text}</ToDoText>
       <Checkbox
         toDoItemId={props.id}

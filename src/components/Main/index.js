@@ -13,6 +13,7 @@ function Main(props) {
       <ToDoList
         onCheckboxChange={props.onCheckboxChange}
         onDelBtnClick={props.onDelBtnClick}
+        onToDoItemDblClick={props.onToDoItemDblClick}
       />
     </main>
   );

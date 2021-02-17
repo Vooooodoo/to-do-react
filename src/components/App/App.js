@@ -40,6 +40,7 @@ class App extends React.Component {
         id,
         text: this.state.inputValue.trim(),
         isCompleted: false,
+        isEditable: false,
       }
       const newToDoItems = [newToDoItem, ...this.state.toDoItems];
 
@@ -113,6 +114,21 @@ class App extends React.Component {
     });
   }
 
+  handleEdetingDblClick = (evt, evtToDoId) => {
+    const newToDoItems = this.state.toDoItems.map(item => {
+      if (evtToDoId === item.id) {
+        item.isEditable = true;
+      }
+
+      return item;
+    });
+
+    addDataToLocalStorage(newToDoItems);
+    this.setState({
+      toDoItems: newToDoItems,
+    });
+  }
+
   render() {
     return (
       <ToDoItemsContext.Provider value={this.state}>
@@ -124,6 +140,7 @@ class App extends React.Component {
           onKeyDown={this.handleEnter}
           onCheckboxChange={this.handleCheckbox}
           onDelBtnClick={this.handleDelBtn}
+          onToDoItemDblClick={this.handleEdetingDblClick}
         />
         {this.state.toDoItems.length > 0
           && <Footer
