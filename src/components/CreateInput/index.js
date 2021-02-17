@@ -33,7 +33,7 @@ function CreateInput(props) {
         onKeyDown={props.onKeyDown}
       />
       {isMaxLength
-        && (<ValidationMessage>{`Ограничение в ${props.inputValue.length} символов.`}</ValidationMessage>)
+        && (<ValidationMessage>{`${props.inputValue.length} characters limit`}</ValidationMessage>)
       }
     </section>
   );

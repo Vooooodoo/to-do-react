@@ -87,7 +87,9 @@ class App extends React.Component {
           onCheckboxChange={this.handleCheckbox}
           onDelBtnClick={this.handleDelBtn}
         />
-        <Footer />
+        {this.state.toDoItems.length > 0
+          && <Footer />
+        }
       </ToDoItemsContext.Provider>
     );
   }
