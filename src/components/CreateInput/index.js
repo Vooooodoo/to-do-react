@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
 
 const Input = styled.input`
   width: 100%;
@@ -9,19 +10,31 @@ const Input = styled.input`
   padding: 0 15px;
   border: none;
   margin-bottom: 10px;
+  outline-color: ${props => props.isMaxLength ? '#af1045' : 'black'};
+  color: ${props => props.isMaxLength ? '#af1045' : 'black'};
+`;
+
+const ValidationMessage = styled.p`
+  margin: 0 0 11px;
+  padding-left: 15px;
 `;
 
 function CreateInput(props) {
+  const isMaxLength = React.useContext(ToDoItemsContext).isMaxLength;
+
   return (
     <section>
       <Input
         type="text"
-        maxLength="10"
         placeholder="What needs to be done?"
         value={props.inputValue}
+        isMaxLength={isMaxLength}
         onChange={props.onChange}
         onKeyDown={props.onKeyDown}
       />
+      {isMaxLength
+        && (<ValidationMessage>{`Ограничение в ${props.inputValue.length} символов.`}</ValidationMessage>)
+      }
     </section>
   );
 }

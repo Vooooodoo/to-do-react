@@ -10,7 +10,7 @@ const StyledToDoList = styled.ul`
 `;
 
 function ToDoList(props) {
-  const toDoItems = React.useContext(ToDoItemsContext);
+  const toDoItems = React.useContext(ToDoItemsContext).toDoItems;
 
   return (
     <section>

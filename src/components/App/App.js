@@ -1,5 +1,6 @@
 import React from 'react';
 import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
+import MAX_LENGTH from '../../utils/constants';
 import { addDataToLocalStorage, getDataFromLocalStorage } from '../../utils/helpers';
 import Footer from '../Footer';
 import GlobalStyle from '../GlobalStyle';
@@ -13,11 +14,23 @@ class App extends React.Component {
     this.state = {
       inputValue: '',
       toDoItems: getDataFromLocalStorage() ? JSON.parse(getDataFromLocalStorage()) : [],
+      isMaxLength: false,
     };
   }
 
   handleCreateInputChange = (evt) => {
     this.setState({ inputValue: evt.target.value });
+
+    if (evt.target.value.length > MAX_LENGTH) {
+      this.setState({
+        inputValue: evt.target.value.slice(0, MAX_LENGTH),
+        isMaxLength: true,
+      });
+    } else {
+      this.setState({
+        isMaxLength: false,
+      });
+    }
   }
 
   handleEnter = (evt) => {
@@ -64,7 +77,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <ToDoItemsContext.Provider value={this.state.toDoItems}>
+      <ToDoItemsContext.Provider value={this.state}>
         <GlobalStyle />
         <Header />
         <Main
