@@ -11,6 +11,7 @@ const StyledRadio = styled.input`
 
 const Text = styled.p`
   display: flex;
+  justify-content: center;
   align-items: center;
   margin: 0;
   font-size: 16px;

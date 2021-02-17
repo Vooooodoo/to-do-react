@@ -8,31 +8,51 @@ const StyledFooter = styled.footer`
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  min-height: 32px;
+  min-height: 65px;
   padding: 15px;
   box-sizing: border-box;
+
+  @media all and (max-width: 767px) {
+    flex-direction: column;
+  }
 `
 
 const Text = styled.p`
   font-size: 16px;
   color: black;
   margin: 0;
+
+  @media all and (max-width: 767px) {
+    margin-bottom: 10px;
+  }
 `
 
 const Wrapper = styled.div`
   display: flex;
   flex-basis: 230px;
   justify-content: space-between;
+
+  @media all and (max-width: 767px) {
+    flex-basis: auto;
+    width: 230px;
+    margin-bottom: 12px;
+  }
 `
 
+const Button = styled.button`
+  font-size: 16px;
+  padding: 5px;
+`
 
 function Footer(props) {
   const toDoItems = React.useContext(ToDoItemsContext).toDoItems;
   const notCompletedItems = toDoItems.filter(item => !item.isCompleted);
+  const completedItems = toDoItems.filter(item => item.isCompleted);
 
   return (
     <StyledFooter>
       <Text>{`${notCompletedItems.length} items left`}</Text>
+
       <Wrapper>
         <Radio
           text="All"
@@ -47,6 +67,15 @@ function Footer(props) {
           onRadioChange={props.onRadioChange}
         />
       </Wrapper>
+
+      {completedItems.length > 0
+        && (<Button
+              type="button"
+              onClick={props.onClearCompletedBtnClick}
+            >
+              {`Clear completed [${completedItems.length}]`}
+            </Button>)
+      }
     </StyledFooter>
   );
 }

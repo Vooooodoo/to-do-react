@@ -47,6 +47,7 @@ class App extends React.Component {
       this.setState({
         inputValue: '',
         toDoItems: newToDoItems,
+        isMaxLength: false,
       });
     }
   }
@@ -103,6 +104,15 @@ class App extends React.Component {
     }
   }
 
+  handleClearCompletedBtn = () => {
+    const newToDoItems = this.state.toDoItems.filter(item => !item.isCompleted);
+
+    addDataToLocalStorage(newToDoItems);
+    this.setState({
+      toDoItems: newToDoItems,
+    });
+  }
+
   render() {
     return (
       <ToDoItemsContext.Provider value={this.state}>
@@ -117,7 +127,8 @@ class App extends React.Component {
         />
         {this.state.toDoItems.length > 0
           && <Footer
-               onRadioChange={this.handleRadio}
+              onRadioChange={this.handleRadio}
+              onClearCompletedBtnClick={this.handleClearCompletedBtn}
              />
         }
       </ToDoItemsContext.Provider>

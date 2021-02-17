@@ -18,5 +18,18 @@ const GlobalStyle = createGlobalStyle`
     max-width: 550px;
     margin: 0 auto;
   }
+
+  button {
+    background-color: #af1045;
+    transition: .3s linear;
+    padding: 0;
+    cursor: pointer;
+    color: white;
+    border: none;
+  }
+
+  button:hover {
+    background-color: #97113d;
+  }
 `
 export default GlobalStyle;
