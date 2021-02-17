@@ -24,19 +24,17 @@ const Btn = styled.button`
   }
 `;
 
-class DelBtn extends React.Component {
-  render() {
-    return (
-      <Btn
-        className="del-btn"
-        type="button"
-        aria-label="Удалить дело."
-        onClick={() => this.props.onDelBtnClick(this.props.toDoItemId)}
-      >
-        x
-      </Btn>
-    );
-  }
+function DeleteButton(props) {
+  return (
+    <Btn
+      className="del-btn"
+      type="button"
+      aria-label="Удалить дело."
+      onClick={() => props.onDelBtnClick(props.toDoItemId)}
+    >
+      x
+    </Btn>
+  );
 }
 
-export default DelBtn;
+export default DeleteButton;

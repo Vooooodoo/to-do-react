@@ -11,21 +11,19 @@ const Input = styled.input`
   margin-bottom: 10px;
 `;
 
-class MainInput extends React.Component {
-  render() {
-    return (
-      <section>
-        <Input
-          type="text"
-          maxLength="10"
-          placeholder="What needs to be done?"
-          value={this.props.inputValue}
-          onChange={this.props.onChange}
-          onKeyDown={this.props.onKeyDown}
-        />
-      </section>
-    );
-  }
+function CreateInput(props) {
+  return (
+    <section>
+      <Input
+        type="text"
+        maxLength="10"
+        placeholder="What needs to be done?"
+        value={props.inputValue}
+        onChange={props.onChange}
+        onKeyDown={props.onKeyDown}
+      />
+    </section>
+  );
 }
 
-export default MainInput;
+export default CreateInput;

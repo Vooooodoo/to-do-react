@@ -9,27 +9,25 @@ const StyledToDoList = styled.ul`
   margin: 0;
 `;
 
-class ToDoList extends React.Component {
-  static contextType = ToDoItemsContext;
+function ToDoList(props) {
+  const toDoItems = React.useContext(ToDoItemsContext);
 
-  render() {
-    return (
-      <section>
-        <StyledToDoList>
-          {this.context.toDoItems.map((item) => (
-            (<ToDoItem
-              key={item.id}
-              id={item.id}
-              text={item.text}
-              isCompleted={item.isCompleted}
-              onCheckboxChange={this.props.onCheckboxChange}
-              onDelBtnClick={this.props.onDelBtnClick}
-            />)
-          ))}
-        </StyledToDoList>
-      </section>
-    );
-  }
+  return (
+    <section>
+      <StyledToDoList>
+        {toDoItems.map((item) => (
+          (<ToDoItem
+            key={item.id}
+            id={item.id}
+            text={item.text}
+            isCompleted={item.isCompleted}
+            onCheckboxChange={props.onCheckboxChange}
+            onDelBtnClick={props.onDelBtnClick}
+          />)
+        ))}
+      </StyledToDoList>
+    </section>
+  );
 }
 
 export default ToDoList;

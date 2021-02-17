@@ -6,13 +6,11 @@ const StyledFooter = styled.footer`
   min-height: 32px;
 `
 
-class Footer extends React.Component {
-  render() {
-    return (
-      <StyledFooter>
-      </StyledFooter>
-    );
-  }
+function Footer() {
+  return (
+    <StyledFooter>
+    </StyledFooter>
+  );
 }
 
 export default Footer;

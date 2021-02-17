@@ -64,7 +64,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <ToDoItemsContext.Provider value={this.state}>
+      <ToDoItemsContext.Provider value={this.state.toDoItems}>
         <GlobalStyle />
         <Header />
         <Main

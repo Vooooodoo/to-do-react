@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledCheckBox = styled.input`
+const StyledCheckbox = styled.input`
   position: absolute;
   top: 50%;
   right: 60px;
@@ -14,17 +14,15 @@ const StyledCheckBox = styled.input`
   margin: 0;
 `;
 
-class CheckBox extends React.Component {
-  render() {
-    return (
-      <StyledCheckBox
-        className="checkbox"
-        type="checkbox"
-        onChange={evt => this.props.onCheckboxChange(evt, this.props.toDoItemId)}
-        checked={this.props.isChecked}
-      />
-    );
-  }
+function Checkbox(props) {
+  return (
+    <StyledCheckbox
+      className="checkbox"
+      type="checkbox"
+      onChange={evt => props.onCheckboxChange(evt, props.toDoItemId)}
+      checked={props.isChecked}
+    />
+  );
 }
 
-export default CheckBox;
+export default Checkbox;

@@ -8,14 +8,12 @@ const Title = styled.h1`
   margin: 0 0 20px;
 `;
 
-class Header extends React.Component {
-  render() {
-    return (
-      <header>
-        <Title lang="en">To Do App</Title>
-      </header>
-    );
-  }
+function Header() {
+  return (
+    <header>
+      <Title lang="en">To Do App</Title>
+    </header>
+  );
 }
 
 export default Header;

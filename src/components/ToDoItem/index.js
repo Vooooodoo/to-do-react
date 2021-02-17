@@ -26,23 +26,21 @@ const ToDoText = styled.p`
   text-decoration: ${props => props.isCompleted ? 'line-through' : 'none'};
 `;
 
-class ToDoItem extends React.Component {
-  render() {
-    return (
-      <StyledToDoItem>
-        <ToDoText isCompleted={this.props.isCompleted}>{this.props.text}</ToDoText>
-        <Checkbox
-          toDoItemId={this.props.id}
-          isChecked={this.props.isCompleted}
-          onCheckboxChange={this.props.onCheckboxChange}
-        />
-        <DeleteButton
-          toDoItemId={this.props.id}
-          onDelBtnClick={this.props.onDelBtnClick}
-        />
-      </StyledToDoItem>
-    );
-  }
+function ToDoItem(props) {
+  return (
+    <StyledToDoItem>
+      <ToDoText isCompleted={props.isCompleted}>{props.text}</ToDoText>
+      <Checkbox
+        toDoItemId={props.id}
+        isChecked={props.isCompleted}
+        onCheckboxChange={props.onCheckboxChange}
+      />
+      <DeleteButton
+        toDoItemId={props.id}
+        onDelBtnClick={props.onDelBtnClick}
+      />
+    </StyledToDoItem>
+  );
 }
 
 export default ToDoItem;
