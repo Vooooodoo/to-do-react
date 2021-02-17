@@ -16,7 +16,7 @@ class App extends React.Component {
     };
   }
 
-  handleMainInputChange = (evt) => {
+  handleCreateInputChange = (evt) => {
     this.setState({ inputValue: evt.target.value });
   }
 
@@ -69,7 +69,7 @@ class App extends React.Component {
         <Header />
         <Main
           inputValue={this.state.inputValue}
-          onChange={this.handleMainInputChange}
+          onChange={this.handleCreateInputChange}
           onKeyDown={this.handleEnter}
           onCheckboxChange={this.handleCheckbox}
           onDelBtnClick={this.handleDelBtn}

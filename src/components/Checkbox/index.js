@@ -4,12 +4,11 @@ import styled from 'styled-components';
 const StyledCheckbox = styled.input`
   position: absolute;
   top: 50%;
-  right: 60px;
+  left: 15px;
   transform: translate(0, -50%);
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   transition: .3s linear;
-  opacity: 0;
   cursor: pointer;
   margin: 0;
 `;
@@ -17,7 +16,6 @@ const StyledCheckbox = styled.input`
 function Checkbox(props) {
   return (
     <StyledCheckbox
-      className="checkbox"
       type="checkbox"
       onChange={evt => props.onCheckboxChange(evt, props.toDoItemId)}
       checked={props.isChecked}

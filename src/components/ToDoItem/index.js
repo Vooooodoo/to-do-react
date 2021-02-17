@@ -6,7 +6,7 @@ import DeleteButton from '../DeleteButton';
 const StyledToDoItem = styled.li`
   position: relative;
 
-  :hover .checkbox, :hover .del-btn {
+  :hover .del-btn {
     opacity: 1;
   }
 `
@@ -18,6 +18,7 @@ const ToDoText = styled.p`
   color: black;
   font-size: 24px;
   padding: 15px;
+  padding-left: 57px;
   display: flex;
   align-items: center;
   box-sizing: border-box;
