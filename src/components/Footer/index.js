@@ -4,6 +4,7 @@ import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
 import Radio from '../Radio';
 
 const StyledFooter = styled.footer`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,6 +12,18 @@ const StyledFooter = styled.footer`
   min-height: 65px;
   padding: 15px;
   box-sizing: border-box;
+
+  ::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 20%), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgb(0 0 0 / 20%), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgb(0 0 0 / 20%);
+    z-index: -1;
+  }
 
   @media all and (max-width: 767px) {
     flex-direction: column;
