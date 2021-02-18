@@ -52,6 +52,27 @@ class App extends React.Component {
     }
   }
 
+  handleEditInputChange = (evt, evtTargetId) => {
+    const newToDoItems = this.createNewToDoItemsArr('text', evt.target.value, evtTargetId);
+
+    this.setState({
+      toDoItems: newToDoItems,
+    });
+
+    if (evt.target.value.length > MAX_LENGTH) {
+      const newToDoItems = this.createNewToDoItemsArr('text', evt.target.value.slice(0, MAX_LENGTH), evtTargetId);
+
+      this.setState({
+        toDoItems: newToDoItems,
+        isMaxLength: true,
+      });
+    } else {
+      this.setState({
+        isMaxLength: false,
+      });
+    }
+  }
+
   handleEnter = (evt) => {
     if (evt.key === 'Enter' && this.state.inputValue.trim()) {
       const id = Date.now();
@@ -148,7 +169,8 @@ class App extends React.Component {
         <Header />
         <Main
           inputValue={this.state.inputValue}
-          onChange={this.handleCreateInputChange}
+          onCreateInputChange={this.handleCreateInputChange}
+          onEditInputChange={this.handleEditInputChange}
           onKeyDown={this.handleEnter}
           onCheckboxChange={this.handleCheckbox}
           onDelBtnClick={this.deleteToDoItem}

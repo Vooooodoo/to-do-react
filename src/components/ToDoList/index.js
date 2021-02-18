@@ -21,9 +21,9 @@ function ToDoList(props) {
             ? (<CreateInput
                  key={item.id}
                  id={item.id}
-                 inputValue={props.inputValue}
+                 inputValue={item.text}
                  autofocus={true}
-                 onChange={props.onChange}
+                 onChange={evt => props.onEditInputChange(evt, item.id)}
                  onBlur={props.onBlur}
                />)
             : (<ToDoItem

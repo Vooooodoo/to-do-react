@@ -8,13 +8,13 @@ function Main(props) {
       <CreateInput
         inputValue={props.inputValue}
         placeholder="What needs to be done?"
-        onChange={props.onChange}
+        onChange={props.onCreateInputChange}
         onKeyDown={props.onKeyDown}
         onBlur={props.onBlur}
       />
       <ToDoList
         inputValue={props.inputValue}
-        onChange={props.onChange}
+        onEditInputChange={props.onEditInputChange}
         onCheckboxChange={props.onCheckboxChange}
         onDelBtnClick={props.onDelBtnClick}
         onToDoItemDblClick={props.onToDoItemDblClick}
