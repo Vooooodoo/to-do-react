@@ -18,6 +18,18 @@ class App extends React.Component {
     };
   }
 
+  createNewToDoItemsArr = (key, value, elementId) => {
+    const newToDoItems = this.state.toDoItems.map(item => {
+      if (elementId === item.id) {
+        item[key] = value;
+      }
+
+      return item;
+    });
+
+    return newToDoItems;
+  }
+
   saveData = (data) => {
     addDataToLocalStorage(data);
     this.setState({
@@ -61,13 +73,7 @@ class App extends React.Component {
   }
 
   handleCheckbox = (evt, evtToDoId) => {
-    const newToDoItems = this.state.toDoItems.map(item => {
-      if (evtToDoId === item.id) {
-        item.isCompleted = evt.target.checked;
-      }
-
-      return item;
-    });
+    const newToDoItems = this.createNewToDoItemsArr('isCompleted', evt.target.checked, evtToDoId);
 
     this.saveData(newToDoItems);
   }
@@ -113,28 +119,24 @@ class App extends React.Component {
   }
 
   handleEdetingDblClick = (evtToDoId) => {
-    const newToDoItems = this.state.toDoItems.map(item => {
-      if (evtToDoId === item.id) {
-        item.isEditable = true;
-      }
-
-      return item;
-    });
+    const newToDoItems = this.createNewToDoItemsArr('isEditable', true, evtToDoId);
 
     this.saveData(newToDoItems);
   }
 
   handleInputBlur = (evt, evtToDoId) => {
-    const newToDoItems = this.state.toDoItems.map(item => {
-      if (evtToDoId === item.id) {
-        item.text = evt.target.value;
-        item.isEditable = false;
-      }
+    if (evt.target.value.trim()) {
+      const newToDoItems = this.state.toDoItems.map(item => {
+        if (evtToDoId === item.id) {
+          item.text = evt.target.value;
+          item.isEditable = false;
+        }
 
-      return item;
-    });
+        return item;
+      });
 
-    this.saveData(newToDoItems);
+      this.saveData(newToDoItems);
+    }
   }
 
   render() {
