@@ -11,6 +11,7 @@ function Main(props) {
         onChange={props.onCreateInputChange}
         onKeyDown={props.onKeyDown}
         onBlur={props.onBlur}
+        isMaxLength={props.isMaxLength}
       />
       <ToDoList
         inputValue={props.inputValue}

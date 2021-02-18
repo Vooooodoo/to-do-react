@@ -60,15 +60,23 @@ class App extends React.Component {
     });
 
     if (evt.target.value.length > MAX_LENGTH) {
-      const newToDoItems = this.createNewToDoItemsArr('text', evt.target.value.slice(0, MAX_LENGTH), evtTargetId);
+      const newToDoItems = this.state.toDoItems.map(item => {
+        if (evtTargetId === item.id) {
+          item.text = evt.target.value.slice(0, MAX_LENGTH);
+          item.isMaxLength = true;
+        }
+
+        return item;
+      });
 
       this.setState({
         toDoItems: newToDoItems,
-        isMaxLength: true,
       });
     } else {
+      const newToDoItems = this.createNewToDoItemsArr('isMaxLength', false, evtTargetId);
+
       this.setState({
-        isMaxLength: false,
+        toDoItems: newToDoItems,
       });
     }
   }
@@ -81,6 +89,7 @@ class App extends React.Component {
         text: this.state.inputValue.trim(),
         isCompleted: false,
         isEditable: false,
+        isMaxLength: false,
       }
       const newToDoItems = [newToDoItem, ...this.state.toDoItems];
 
@@ -176,6 +185,7 @@ class App extends React.Component {
           onDelBtnClick={this.deleteToDoItem}
           onToDoItemDblClick={this.handleEdetingDblClick}
           onBlur={this.handleInputBlur}
+          isMaxLength={this.state.isMaxLength}
         />
         {this.state.toDoItems.length > 0
           && <Footer

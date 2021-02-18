@@ -41,7 +41,8 @@ const Container = styled.div`
 
 const Button = styled.button`
   font-size: 16px;
-  padding: 5px;
+  padding: 8px;
+  border-radius: 3px;
 `
 
 function Footer(props) {
