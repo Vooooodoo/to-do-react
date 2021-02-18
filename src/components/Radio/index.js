@@ -22,6 +22,7 @@ function Radio(props) {
   return (
     <Text>
       <StyledRadio
+        defaultChecked={props.isChecked}
         type="radio"
         name="to-do-items"
         value={props.text}
