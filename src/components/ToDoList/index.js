@@ -11,12 +11,17 @@ const StyledToDoList = styled.ul`
 `;
 
 function ToDoList(props) {
+  const isFiltered = React.useContext(ToDoItemsContext).isFiltered;
   const toDoItems = React.useContext(ToDoItemsContext).toDoItems;
+  const filteredToDoItems = React.useContext(ToDoItemsContext).filteredToDoItems;
+  const renderItems = isFiltered
+    ? filteredToDoItems
+    : toDoItems;
 
   return (
     <section>
       <StyledToDoList>
-        {toDoItems.map((item) => (
+        {renderItems.map((item) => (
           item.isEditable
             ? (<CreateInput
                  key={item.id}

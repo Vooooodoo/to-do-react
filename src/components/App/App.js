@@ -14,6 +14,8 @@ class App extends React.Component {
     this.state = {
       inputValue: '',
       toDoItems: getDataFromLocalStorage() ? JSON.parse(getDataFromLocalStorage()) : [],
+      filteredToDoItems: [],
+      isFiltered: false,
       isMaxLength: false,
     };
   }
@@ -121,6 +123,7 @@ class App extends React.Component {
 
     if (evt.target.value === 'All') {
       this.setState({
+        isFiltered: false,
         toDoItems: JSON.parse(getDataFromLocalStorage()),
       });
     }
@@ -129,7 +132,8 @@ class App extends React.Component {
       const activeItems = this.state.toDoItems.filter(item => !item.isCompleted);
 
       this.setState({
-        toDoItems: activeItems,
+        isFiltered: true,
+        filteredToDoItems: activeItems,
       });
     }
 
@@ -137,7 +141,8 @@ class App extends React.Component {
       const completedItems = this.state.toDoItems.filter(item => item.isCompleted);
 
       this.setState({
-        toDoItems: completedItems,
+        isFiltered: true,
+        filteredToDoItems: completedItems,
       });
     }
   }

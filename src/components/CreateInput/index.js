@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
 
 const Input = styled.input`
   width: 100%;
@@ -20,8 +19,6 @@ const ValidationMessage = styled.p`
 `;
 
 function CreateInput(props) {
-  const isMaxLength = React.useContext(ToDoItemsContext).isMaxLength;
-
   return (
     <section>
       <Input
