@@ -70,6 +70,7 @@ function Footer(props) {
 
       {completedItems.length > 0
         && (<Button
+              className="transition"
               type="button"
               onClick={props.onClearCompletedBtnClick}
             >

@@ -20,7 +20,7 @@ const Button = styled.button`
 function DeleteButton(props) {
   return (
     <Button
-      className="del-btn"
+      className="del-btn transition"
       type="button"
       aria-label="Удалить дело."
       onClick={() => props.onDelBtnClick(props.toDoItemId)}

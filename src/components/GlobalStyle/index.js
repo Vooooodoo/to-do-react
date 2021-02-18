@@ -21,7 +21,6 @@ const GlobalStyle = createGlobalStyle`
 
   button {
     background-color: #af1045;
-    transition: .3s linear;
     padding: 0;
     cursor: pointer;
     color: white;
@@ -30,6 +29,10 @@ const GlobalStyle = createGlobalStyle`
 
   button:hover {
     background-color: #97113d;
+  }
+
+  .transition {
+    transition: .3s linear;
   }
 `
 export default GlobalStyle;

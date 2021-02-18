@@ -8,7 +8,6 @@ const StyledCheckbox = styled.input`
   transform: translate(0, -50%);
   width: 30px;
   height: 30px;
-  transition: .3s linear;
   cursor: pointer;
   margin: 0;
 `;
@@ -16,6 +15,7 @@ const StyledCheckbox = styled.input`
 function Checkbox(props) {
   return (
     <StyledCheckbox
+      className="transition"
       type="checkbox"
       onChange={evt => props.onCheckboxChange(evt, props.toDoItemId)}
       checked={props.isChecked}

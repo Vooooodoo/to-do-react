@@ -72,14 +72,14 @@ class App extends React.Component {
     }
   }
 
-  handleCheckbox = (evt, evtToDoId) => {
-    const newToDoItems = this.createNewToDoItemsArr('isCompleted', evt.target.checked, evtToDoId);
+  handleCheckbox = (evt, evtTargetId) => {
+    const newToDoItems = this.createNewToDoItemsArr('isCompleted', evt.target.checked, evtTargetId);
 
     this.saveData(newToDoItems);
   }
 
-  handleDelBtn = (evtToDoId) => {
-    const newToDoItems = this.state.toDoItems.filter(item => evtToDoId !== item.id);
+  deleteToDoItem = (evtTargetId) => {
+    const newToDoItems = this.state.toDoItems.filter(item => evtTargetId !== item.id);
 
     this.saveData(newToDoItems);
   }
@@ -118,16 +118,16 @@ class App extends React.Component {
     this.saveData(newToDoItems);
   }
 
-  handleEdetingDblClick = (evtToDoId) => {
-    const newToDoItems = this.createNewToDoItemsArr('isEditable', true, evtToDoId);
+  handleEdetingDblClick = (evtTargetId) => {
+    const newToDoItems = this.createNewToDoItemsArr('isEditable', true, evtTargetId);
 
     this.saveData(newToDoItems);
   }
 
-  handleInputBlur = (evt, evtToDoId) => {
+  handleInputBlur = (evt, evtTargetId) => {
     if (evt.target.value.trim()) {
       const newToDoItems = this.state.toDoItems.map(item => {
-        if (evtToDoId === item.id) {
+        if (evtTargetId === item.id) {
           item.text = evt.target.value;
           item.isEditable = false;
         }
@@ -136,6 +136,8 @@ class App extends React.Component {
       });
 
       this.saveData(newToDoItems);
+    } else {
+      this.deleteToDoItem(evtTargetId);
     }
   }
 
@@ -149,7 +151,7 @@ class App extends React.Component {
           onChange={this.handleCreateInputChange}
           onKeyDown={this.handleEnter}
           onCheckboxChange={this.handleCheckbox}
-          onDelBtnClick={this.handleDelBtn}
+          onDelBtnClick={this.deleteToDoItem}
           onToDoItemDblClick={this.handleEdetingDblClick}
           onBlur={this.handleInputBlur}
         />
