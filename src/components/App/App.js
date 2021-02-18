@@ -151,6 +151,12 @@ class App extends React.Component {
     const newToDoItems = this.state.toDoItems.filter(item => !item.isCompleted);
 
     this.saveData(newToDoItems);
+
+    if (this.state.isFiltered) {
+      this.setState({
+        filteredToDoItems: [],
+      });
+    }
   }
 
   handleEdetingDblClick = (evtTargetId) => {
