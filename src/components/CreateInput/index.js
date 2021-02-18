@@ -15,7 +15,7 @@ const Input = styled.input`
 `;
 
 const ValidationMessage = styled.p`
-  margin: 0 0 11px;
+  margin: 10px 0;
   padding-left: 15px;
 `;
 
@@ -26,11 +26,13 @@ function CreateInput(props) {
     <section>
       <Input
         type="text"
-        placeholder="What needs to be done?"
+        autoFocus={props.autofocus}
+        placeholder={props.placeholder}
         value={props.inputValue}
         isMaxLength={isMaxLength}
         onChange={props.onChange}
         onKeyDown={props.onKeyDown}
+        onBlur={evt => props.onBlur(evt, props.id)}
       />
       {isMaxLength
         && (<ValidationMessage>{`${props.inputValue.length} characters limit`}</ValidationMessage>)

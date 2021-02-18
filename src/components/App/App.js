@@ -18,6 +18,13 @@ class App extends React.Component {
     };
   }
 
+  saveData = (data) => {
+    addDataToLocalStorage(data);
+    this.setState({
+      toDoItems: data,
+    });
+  }
+
   handleCreateInputChange = (evt) => {
     this.setState({ inputValue: evt.target.value });
 
@@ -62,19 +69,13 @@ class App extends React.Component {
       return item;
     });
 
-    addDataToLocalStorage(newToDoItems);
-    this.setState({
-      toDoItems: newToDoItems,
-    });
+    this.saveData(newToDoItems);
   }
 
   handleDelBtn = (evtToDoId) => {
     const newToDoItems = this.state.toDoItems.filter(item => evtToDoId !== item.id);
 
-    addDataToLocalStorage(newToDoItems);
-    this.setState({
-      toDoItems: newToDoItems,
-    });
+    this.saveData(newToDoItems);
   }
 
   handleRadio = (evt) => {
@@ -108,13 +109,10 @@ class App extends React.Component {
   handleClearCompletedBtn = () => {
     const newToDoItems = this.state.toDoItems.filter(item => !item.isCompleted);
 
-    addDataToLocalStorage(newToDoItems);
-    this.setState({
-      toDoItems: newToDoItems,
-    });
+    this.saveData(newToDoItems);
   }
 
-  handleEdetingDblClick = (evt, evtToDoId) => {
+  handleEdetingDblClick = (evtToDoId) => {
     const newToDoItems = this.state.toDoItems.map(item => {
       if (evtToDoId === item.id) {
         item.isEditable = true;
@@ -123,10 +121,20 @@ class App extends React.Component {
       return item;
     });
 
-    addDataToLocalStorage(newToDoItems);
-    this.setState({
-      toDoItems: newToDoItems,
+    this.saveData(newToDoItems);
+  }
+
+  handleInputBlur = (evt, evtToDoId) => {
+    const newToDoItems = this.state.toDoItems.map(item => {
+      if (evtToDoId === item.id) {
+        item.text = evt.target.value;
+        item.isEditable = false;
+      }
+
+      return item;
     });
+
+    this.saveData(newToDoItems);
   }
 
   render() {
@@ -141,6 +149,7 @@ class App extends React.Component {
           onCheckboxChange={this.handleCheckbox}
           onDelBtnClick={this.handleDelBtn}
           onToDoItemDblClick={this.handleEdetingDblClick}
+          onBlur={this.handleInputBlur}
         />
         {this.state.toDoItems.length > 0
           && <Footer

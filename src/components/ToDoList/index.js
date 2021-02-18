@@ -20,9 +20,11 @@ function ToDoList(props) {
           item.isEditable
             ? (<CreateInput
                  key={item.id}
+                 id={item.id}
                  inputValue={props.inputValue}
+                 autofocus={true}
                  onChange={props.onChange}
-                 onKeyDown={props.onKeyDown}
+                 onBlur={props.onBlur}
                />)
             : (<ToDoItem
                  key={item.id}
