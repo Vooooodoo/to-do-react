@@ -11,22 +11,31 @@ const StyledToDoList = styled.ul`
 `;
 
 function ToDoList(props) {
-  const isFiltered = React.useContext(ToDoItemsContext).isFiltered;
   const toDoItems = React.useContext(ToDoItemsContext).toDoItems;
-  const filteredToDoItems = React.useContext(ToDoItemsContext).filteredToDoItems;
-  const renderItems = isFiltered
-    ? filteredToDoItems
-    : toDoItems;
+  const radioValue = React.useContext(ToDoItemsContext).radioValue;
 
-  // const renderArr = () => {
-  //   const filter = 'completed';
-  //   return todoInitil.filter(i => i.isCompleted);
-  // }
+  const createRenderArr = () => {
+    if (radioValue === 'All') {
+      return toDoItems;
+    }
+
+    if (radioValue === 'Active') {
+      return toDoItems.filter(item => !item.isCompleted);
+    }
+
+    if (radioValue === 'Completed') {
+      return toDoItems.filter(item => item.isCompleted);
+    }
+
+    return toDoItems;
+  }
+
+  const renderArr = createRenderArr();
 
   return (
     <section>
       <StyledToDoList>
-        {renderItems.map((item) => (
+        {renderArr.map((item) => (
           item.isEditable
             ? (<CreateInput
                  key={item.id}

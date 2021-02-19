@@ -14,10 +14,7 @@ class App extends React.Component {
     this.state = {
       inputValue: '',
       toDoItems: getDataFromLocalStorage() ? JSON.parse(getDataFromLocalStorage()) : [],
-      filteredToDoItems: [],
-      isFiltered: false,
-      isActiveFiltered: false,
-      isCompletedFiltered: false,
+      radioValue: 'All',
       isMaxLength: false,
     };
   }
@@ -110,14 +107,6 @@ class App extends React.Component {
     const newToDoItems = this.createNewToDoItemsArr('isCompleted', evt.target.checked, evtTargetId);
 
     this.saveData(newToDoItems);
-
-    if (this.state.isActiveFiltered) {
-      this.filterActiveItems();
-    }
-
-    if (this.state.isCompletedFiltered) {
-      this.filterCompletedItems();
-    }
   }
 
   deleteToDoItem = (evtTargetId) => {
@@ -126,44 +115,23 @@ class App extends React.Component {
     this.saveData(newToDoItems);
   }
 
-  filterActiveItems = () => {
-    const activeItems = this.state.toDoItems.filter(item => !item.isCompleted);
-
-    this.setState({
-      isFiltered: true,
-      isActiveFiltered: true,
-      isCompletedFiltered: false,
-      filteredToDoItems: activeItems,
-    });
-  }
-
-  filterCompletedItems = () => {
-    const completedItems = this.state.toDoItems.filter(item => item.isCompleted);
-
-    this.setState({
-      isFiltered: true,
-      isCompletedFiltered: true,
-      isActiveFiltered: false,
-      filteredToDoItems: completedItems,
-    });
-  }
-
   handleRadio = (evt) => {
     if (evt.target.value === 'All') {
       this.setState({
-        isFiltered: false,
-        isActiveFiltered: false,
-        isCompletedFiltered: false,
-        toDoItems: JSON.parse(getDataFromLocalStorage()),
+        radioValue: 'All',
       });
     }
 
     if (evt.target.value === 'Active') {
-      this.filterActiveItems();
+      this.setState({
+        radioValue: 'Active',
+      });
     }
 
     if (evt.target.value === 'Completed') {
-      this.filterCompletedItems();
+      this.setState({
+        radioValue: 'Completed',
+      });
     }
   }
 
@@ -171,12 +139,6 @@ class App extends React.Component {
     const newToDoItems = this.state.toDoItems.filter(item => !item.isCompleted);
 
     this.saveData(newToDoItems);
-
-    if (this.state.isFiltered) {
-      this.setState({
-        filteredToDoItems: [],
-      });
-    }
   }
 
   handleEdetingDblClick = (evtTargetId) => {

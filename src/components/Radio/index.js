@@ -31,7 +31,7 @@ function Radio(props) {
         value={props.text}
         onChange={props.onRadioChange}
       />
-      <StyledLabel for={props.id}>{props.text}</StyledLabel>
+      <StyledLabel htmlFor={props.id}>{props.text}</StyledLabel>
     </>
   );
 }
