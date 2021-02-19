@@ -75,7 +75,7 @@ function Footer(props) {
       <Container>
         <Radio
           text="All"
-          isChecked={true}
+          isChecked
           onRadioChange={props.onRadioChange}
         />
         <Radio

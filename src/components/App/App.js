@@ -42,15 +42,13 @@ class App extends React.Component {
   }
 
   handleCreateInputChange = (evt) => {
-    this.setState({ inputValue: evt.target.value });
-
     if (evt.target.value.length > MAX_LENGTH) {
       this.setState({
-        inputValue: evt.target.value.slice(0, MAX_LENGTH),
         isMaxLength: true,
       });
     } else {
       this.setState({
+        inputValue: evt.target.value,
         isMaxLength: false,
       });
     }
@@ -86,11 +84,13 @@ class App extends React.Component {
   }
 
   handleEnter = (evt) => {
-    if (evt.key === 'Enter' && this.state.inputValue.trim()) {
+    const trimmedInputValue = this.state.inputValue.trim();
+
+    if (evt.key === 'Enter' && trimmedInputValue) {
       const id = Date.now();
       const newToDoItem = {
         id,
-        text: this.state.inputValue.trim(),
+        text: trimmedInputValue,
         isCompleted: false,
         isEditable: false,
         isMaxLength: false,
@@ -132,6 +132,7 @@ class App extends React.Component {
     this.setState({
       isFiltered: true,
       isActiveFiltered: true,
+      isCompletedFiltered: false,
       filteredToDoItems: activeItems,
     });
   }
@@ -142,15 +143,12 @@ class App extends React.Component {
     this.setState({
       isFiltered: true,
       isCompletedFiltered: true,
+      isActiveFiltered: false,
       filteredToDoItems: completedItems,
     });
   }
 
   handleRadio = (evt) => {
-    this.state = {
-      toDoItems: JSON.parse(getDataFromLocalStorage()),
-    };
-
     if (evt.target.value === 'All') {
       this.setState({
         isFiltered: false,
@@ -220,12 +218,12 @@ class App extends React.Component {
           onBlur={this.handleInputBlur}
           isMaxLength={this.state.isMaxLength}
         />
-        {this.state.toDoItems.length > 0
-          && <Footer
-              onRadioChange={this.handleRadio}
-              onClearCompletedBtnClick={this.handleClearCompletedBtn}
-             />
-        }
+        {this.state.toDoItems.length > 0 && (
+          <Footer
+            onRadioChange={this.handleRadio}
+            onClearCompletedBtnClick={this.handleClearCompletedBtn}
+          />
+        )}
       </ToDoItemsContext.Provider>
     );
   }

@@ -18,6 +18,11 @@ function ToDoList(props) {
     ? filteredToDoItems
     : toDoItems;
 
+  // const renderArr = () => {
+  //   const filter = 'completed';
+  //   return todoInitil.filter(i => i.isCompleted);
+  // }
+
   return (
     <section>
       <StyledToDoList>
