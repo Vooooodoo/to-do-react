@@ -7,7 +7,6 @@ const StyledFooter = styled.footer`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   background-color: white;
   min-height: 65px;
   padding: 15px;
@@ -39,9 +38,10 @@ const Text = styled.p`
   font-size: 16px;
   color: black;
   margin: 0;
+  margin-right: 27px;
 
   @media all and (max-width: 767px) {
-    margin-bottom: 10px;
+    margin: 0 0 10px;
   }
 `
 
@@ -49,11 +49,12 @@ const Container = styled.div`
   display: flex;
   flex-basis: 230px;
   justify-content: space-between;
+  margin-right: 27px;
 
   @media all and (max-width: 767px) {
     flex-basis: auto;
     width: 230px;
-    margin-bottom: 12px;
+    margin: 0 0 12px;
   }
 `
 
