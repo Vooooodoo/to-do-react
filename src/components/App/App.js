@@ -218,7 +218,7 @@ class App extends React.Component {
           onBlur={this.handleInputBlur}
           isMaxLength={this.state.isMaxLength}
         />
-        {this.state.toDoItems.length > 0 && (
+        {Boolean(this.state.toDoItems.length) && (
           <Footer
             onRadioChange={this.handleRadio}
             onClearCompletedBtnClick={this.handleClearCompletedBtn}

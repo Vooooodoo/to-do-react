@@ -31,9 +31,9 @@ function CreateInput(props) {
         onKeyDown={props.onKeyDown}
         onBlur={evt => props.onBlur(evt, props.id)}
       />
-      {props.isMaxLength
-        && (<ValidationMessage>{`${props.inputValue.length} characters limit`}</ValidationMessage>)
-      }
+      {props.isMaxLength && (
+        <ValidationMessage>{`${props.inputValue.length} characters limit`}</ValidationMessage>
+      )}
     </section>
   );
 }

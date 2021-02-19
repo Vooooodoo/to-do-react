@@ -88,15 +88,15 @@ function Footer(props) {
         />
       </Container>
 
-      {completedItems.length > 0
-        && (<Button
-              className="transition"
-              type="button"
-              onClick={props.onClearCompletedBtnClick}
-            >
-              {`Clear completed [${completedItems.length}]`}
-            </Button>)
-      }
+      {Boolean(completedItems.length) && (
+        <Button
+          className="transition"
+          type="button"
+          onClick={props.onClearCompletedBtnClick}
+        >
+          {`Clear completed [${completedItems.length}]`}
+        </Button>
+      )}
     </StyledFooter>
   );
 }
