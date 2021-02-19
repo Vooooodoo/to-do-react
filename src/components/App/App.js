@@ -16,6 +16,8 @@ class App extends React.Component {
       toDoItems: getDataFromLocalStorage() ? JSON.parse(getDataFromLocalStorage()) : [],
       filteredToDoItems: [],
       isFiltered: false,
+      isActiveFiltered: false,
+      isCompletedFiltered: false,
       isMaxLength: false,
     };
   }
@@ -108,12 +110,40 @@ class App extends React.Component {
     const newToDoItems = this.createNewToDoItemsArr('isCompleted', evt.target.checked, evtTargetId);
 
     this.saveData(newToDoItems);
+
+    if (this.state.isActiveFiltered) {
+      this.filterActiveItems();
+    }
+
+    if (this.state.isCompletedFiltered) {
+      this.filterCompletedItems();
+    }
   }
 
   deleteToDoItem = (evtTargetId) => {
     const newToDoItems = this.state.toDoItems.filter(item => evtTargetId !== item.id);
 
     this.saveData(newToDoItems);
+  }
+
+  filterActiveItems = () => {
+    const activeItems = this.state.toDoItems.filter(item => !item.isCompleted);
+
+    this.setState({
+      isFiltered: true,
+      isActiveFiltered: true,
+      filteredToDoItems: activeItems,
+    });
+  }
+
+  filterCompletedItems = () => {
+    const completedItems = this.state.toDoItems.filter(item => item.isCompleted);
+
+    this.setState({
+      isFiltered: true,
+      isCompletedFiltered: true,
+      filteredToDoItems: completedItems,
+    });
   }
 
   handleRadio = (evt) => {
@@ -124,26 +154,18 @@ class App extends React.Component {
     if (evt.target.value === 'All') {
       this.setState({
         isFiltered: false,
+        isActiveFiltered: false,
+        isCompletedFiltered: false,
         toDoItems: JSON.parse(getDataFromLocalStorage()),
       });
     }
 
     if (evt.target.value === 'Active') {
-      const activeItems = this.state.toDoItems.filter(item => !item.isCompleted);
-
-      this.setState({
-        isFiltered: true,
-        filteredToDoItems: activeItems,
-      });
+      this.filterActiveItems();
     }
 
     if (evt.target.value === 'Completed') {
-      const completedItems = this.state.toDoItems.filter(item => item.isCompleted);
-
-      this.setState({
-        isFiltered: true,
-        filteredToDoItems: completedItems,
-      });
+      this.filterCompletedItems();
     }
   }
 
