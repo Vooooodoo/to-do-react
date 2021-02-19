@@ -48,7 +48,7 @@ const Text = styled.p`
 const Container = styled.div`
   display: flex;
   flex-basis: 230px;
-  justify-content: space-between;
+  align-items: center;
   margin-right: 27px;
 
   @media all and (max-width: 767px) {
@@ -75,15 +75,18 @@ function Footer(props) {
 
       <Container>
         <Radio
+          id="radio-all"
           text="All"
           isChecked
           onRadioChange={props.onRadioChange}
         />
         <Radio
+          id="radio-active"
           text="Active"
           onRadioChange={props.onRadioChange}
         />
         <Radio
+          id="radio-completed"
           text="Completed"
           onRadioChange={props.onRadioChange}
         />

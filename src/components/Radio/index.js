@@ -3,33 +3,36 @@ import styled from 'styled-components';
 
 const StyledRadio = styled.input`
   margin: 0;
-  margin-right: 5px;
   cursor: pointer;
   width: 15px;
   height: 15px;
 `;
 
-const Text = styled.p`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
+const StyledLabel = styled.label`
+  cursor: pointer;
+  padding-left: 5px;
+  margin-right: 15px;
   font-size: 16px;
   color: black;
+
+  :last-of-type {
+    margin-right: 0;
+  }
 `;
 
 function Radio(props) {
   return (
-    <Text>
+    <>
       <StyledRadio
+        id={props.id}
         defaultChecked={props.isChecked}
         type="radio"
         name="to-do-items"
         value={props.text}
         onChange={props.onRadioChange}
       />
-      {props.text}
-    </Text>
+      <StyledLabel for={props.id}>{props.text}</StyledLabel>
+    </>
   );
 }
 
