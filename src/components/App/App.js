@@ -13,10 +13,18 @@ class App extends React.Component {
 
     this.state = {
       inputValue: '',
-      toDoItems: getDataFromLocalStorage() ? JSON.parse(getDataFromLocalStorage()) : [],
+      toDoItems: [],
       radioValue: 'All',
       isMaxLength: false,
     };
+  }
+
+  componentDidMount() {
+    const initData = getDataFromLocalStorage();
+
+    this.setState({
+      toDoItems: initData ? JSON.parse(initData) : [],
+    });
   }
 
   createNewToDoItemsArr = (key, value, elementId) => {
