@@ -13,10 +13,11 @@ class App extends React.Component {
 
     this.state = {
       createInputValue: '',
+      isCreateInputMaxLength: false,
       editInputValue: '',
+      isEditInputMaxLength: false,
       toDoItems: [],
       radioValue: 'All',
-      isMaxLength: false,
     };
   }
 
@@ -50,36 +51,25 @@ class App extends React.Component {
   handleCreateInputChange = (evt) => {
     if (evt.target.value.length > MAX_LENGTH) {
       this.setState({
-        isMaxLength: true,
+        isCreateInputMaxLength: true,
       });
     } else {
       this.setState({
         createInputValue: evt.target.value,
-        isMaxLength: false,
+        isCreateInputMaxLength: false,
       });
     }
   }
 
-  handleEditInputChange = (evt, evtTargetId) => {
+  handleEditInputChange = (evt) => {
     if (evt.target.value.length > MAX_LENGTH) {
-      const newToDoItems = this.state.toDoItems.map(item => {
-        if (evtTargetId === item.id) {
-          item.text = evt.target.value;
-          item.isMaxLength = true;
-        }
-
-        return item;
-      });
-
       this.setState({
-        toDoItems: newToDoItems,
+        isEditInputMaxLength: true,
       });
     } else {
-      const newToDoItems = this.createNewToDoItemsArr('isMaxLength', false, evtTargetId);
-
       this.setState({
         editInputValue: evt.target.value,
-        toDoItems: newToDoItems,
+        isEditInputMaxLength: false,
       });
     }
   }
@@ -94,7 +84,6 @@ class App extends React.Component {
         text: trimmedInputValue,
         isCompleted: false,
         isEditable: false,
-        isMaxLength: false,
       }
       const newToDoItems = [newToDoItem, ...this.state.toDoItems];
 
@@ -102,7 +91,7 @@ class App extends React.Component {
       this.setState({
         createInputValue: '',
         toDoItems: newToDoItems,
-        isMaxLength: false,
+        isCreateInputMaxLength: false,
       });
     }
   }
@@ -180,7 +169,9 @@ class App extends React.Component {
         <Header />
         <Main
           createInputValue={this.state.createInputValue}
+          isCreateInputMaxLength={this.state.isCreateInputMaxLength}
           editInputValue={this.state.editInputValue}
+          isEditInputMaxLength={this.state.isEditInputMaxLength}
           onCreateInputChange={this.handleCreateInputChange}
           onEditInputChange={this.handleEditInputChange}
           onKeyDown={this.handleEnter}
@@ -188,7 +179,6 @@ class App extends React.Component {
           onDelBtnClick={this.deleteToDoItem}
           onToDoItemDblClick={this.handleEdetingDblClick}
           onBlur={this.handleInputBlur}
-          isMaxLength={this.state.isMaxLength}
         />
         {Boolean(this.state.toDoItems.length) && (
           <Footer

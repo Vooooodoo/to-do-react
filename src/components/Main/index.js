@@ -7,14 +7,15 @@ function Main(props) {
     <main>
       <CreateInput
         inputValue={props.createInputValue}
+        isMaxLength={props.isCreateInputMaxLength}
         placeholder="What needs to be done?"
         onChange={props.onCreateInputChange}
         onKeyDown={props.onKeyDown}
         onBlur={props.onBlur}
-        isMaxLength={props.isMaxLength}
       />
       <ToDoList
         inputValue={props.editInputValue}
+        isEditInputMaxLength={props.isEditInputMaxLength}
         onEditInputChange={props.onEditInputChange}
         onCheckboxChange={props.onCheckboxChange}
         onDelBtnClick={props.onDelBtnClick}
