@@ -136,10 +136,10 @@ class App extends React.Component {
 
   handleEdetingDblClick = (evtTargetId) => {
     const newToDoItems = this.createNewToDoItemsArr('isEditable', true, evtTargetId);
-    const a = newToDoItems.filter(item => item.isEditable)
+    const editableText = newToDoItems.filter(item => item.isEditable)[0].text;
 
     this.setState({
-      editInputValue: a[0].text,
+      editInputValue: editableText,
     });
 
     this.saveData(newToDoItems);
