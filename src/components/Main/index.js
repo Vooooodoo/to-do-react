@@ -6,7 +6,7 @@ function Main(props) {
   return (
     <main>
       <CreateInput
-        inputValue={props.inputValue}
+        inputValue={props.createInputValue}
         placeholder="What needs to be done?"
         onChange={props.onCreateInputChange}
         onKeyDown={props.onKeyDown}
@@ -14,7 +14,7 @@ function Main(props) {
         isMaxLength={props.isMaxLength}
       />
       <ToDoList
-        inputValue={props.inputValue}
+        inputValue={props.editInputValue}
         onEditInputChange={props.onEditInputChange}
         onCheckboxChange={props.onCheckboxChange}
         onDelBtnClick={props.onDelBtnClick}

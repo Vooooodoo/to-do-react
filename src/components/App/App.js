@@ -12,7 +12,8 @@ class App extends React.Component {
     super();
 
     this.state = {
-      inputValue: '',
+      createInputValue: '',
+      editInputValue: '',
       toDoItems: [],
       radioValue: 'All',
       isMaxLength: false,
@@ -53,23 +54,17 @@ class App extends React.Component {
       });
     } else {
       this.setState({
-        inputValue: evt.target.value,
+        createInputValue: evt.target.value,
         isMaxLength: false,
       });
     }
   }
 
   handleEditInputChange = (evt, evtTargetId) => {
-    const newToDoItems = this.createNewToDoItemsArr('text', evt.target.value, evtTargetId);
-
-    this.setState({
-      toDoItems: newToDoItems,
-    });
-
     if (evt.target.value.length > MAX_LENGTH) {
       const newToDoItems = this.state.toDoItems.map(item => {
         if (evtTargetId === item.id) {
-          item.text = evt.target.value.slice(0, MAX_LENGTH);
+          item.text = evt.target.value;
           item.isMaxLength = true;
         }
 
@@ -83,13 +78,14 @@ class App extends React.Component {
       const newToDoItems = this.createNewToDoItemsArr('isMaxLength', false, evtTargetId);
 
       this.setState({
+        editInputValue: evt.target.value,
         toDoItems: newToDoItems,
       });
     }
   }
 
   handleEnter = (evt) => {
-    const trimmedInputValue = this.state.inputValue.trim();
+    const trimmedInputValue = this.state.createInputValue.trim();
 
     if (evt.key === 'Enter' && trimmedInputValue) {
       const id = Date.now();
@@ -104,7 +100,7 @@ class App extends React.Component {
 
       addDataToLocalStorage(newToDoItems);
       this.setState({
-        inputValue: '',
+        createInputValue: '',
         toDoItems: newToDoItems,
         isMaxLength: false,
       });
@@ -151,6 +147,11 @@ class App extends React.Component {
 
   handleEdetingDblClick = (evtTargetId) => {
     const newToDoItems = this.createNewToDoItemsArr('isEditable', true, evtTargetId);
+    const a = newToDoItems.filter(item => item.isEditable)
+
+    this.setState({
+      editInputValue: a[0].text,
+    });
 
     this.saveData(newToDoItems);
   }
@@ -178,7 +179,8 @@ class App extends React.Component {
         <GlobalStyle />
         <Header />
         <Main
-          inputValue={this.state.inputValue}
+          createInputValue={this.state.createInputValue}
+          editInputValue={this.state.editInputValue}
           onCreateInputChange={this.handleCreateInputChange}
           onEditInputChange={this.handleEditInputChange}
           onKeyDown={this.handleEnter}

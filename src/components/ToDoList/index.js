@@ -40,7 +40,7 @@ function ToDoList(props) {
             ? (<CreateInput
                  key={item.id}
                  id={item.id}
-                 inputValue={item.text}
+                 inputValue={props.inputValue}
                  autofocus={true}
                  onChange={evt => props.onEditInputChange(evt, item.id)}
                  onBlur={props.onBlur}
