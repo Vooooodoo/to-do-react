@@ -1,11 +1,11 @@
 import React from 'react';
-import CreateInput from '../CreateInput';
+import Input from '../Input';
 import ToDoList from '../ToDoList';
 
 function Main(props) {
   return (
     <main>
-      <CreateInput
+      <Input
         inputValue={props.createInputValue}
         isMaxLength={props.isCreateInputMaxLength}
         placeholder="What needs to be done?"

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
-import CreateInput from '../CreateInput';
+import Input from '../Input';
 import ToDoItem from '../ToDoItem';
 
 const StyledToDoList = styled.ul`
@@ -37,7 +37,7 @@ function ToDoList(props) {
       <StyledToDoList>
         {renderArr.map((item) => (
           item.isEditable
-            ? (<CreateInput
+            ? (<Input
                  key={item.id}
                  id={item.id}
                  inputValue={props.inputValue}

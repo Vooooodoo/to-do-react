@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Input = styled.input`
+const StyledInput = styled.input`
   width: 100%;
   height: 65px;
   box-sizing: border-box;
@@ -18,10 +18,10 @@ const ValidationMessage = styled.p`
   padding-left: 15px;
 `;
 
-function CreateInput(props) {
+function Input(props) {
   return (
     <section>
-      <Input
+      <StyledInput
         type="text"
         autoFocus={props.autofocus}
         placeholder={props.placeholder}
@@ -38,4 +38,4 @@ function CreateInput(props) {
   );
 }
 
-export default CreateInput;
+export default Input;
