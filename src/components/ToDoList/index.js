@@ -26,8 +26,6 @@ function ToDoList(props) {
     if (radioValue === 'Completed') {
       return toDoItems.filter(item => item.isCompleted);
     }
-
-    return toDoItems;
   }
 
   const renderArr = createRenderArr();
