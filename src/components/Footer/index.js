@@ -96,7 +96,6 @@ function Footer(props) {
         <Button
           className="transition"
           type="button"
-          lang="en"
           onClick={props.onClearCompletedBtnClick}
         >
           {`Clear completed [${completedItems.length}]`}

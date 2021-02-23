@@ -32,7 +32,7 @@ function Input(props) {
         onBlur={evt => props.onBlur(evt, props.id)}
       />
       {props.isMaxLength && (
-        <ValidationMessage lang="en">{`${props.inputValue.length} characters limit`}</ValidationMessage>
+        <ValidationMessage>{`${props.inputValue.length} characters limit`}</ValidationMessage>
       )}
     </section>
   );
