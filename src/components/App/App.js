@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
+import ToDoItemsContext from '../../contexts/ToDoItemsContext';
 import MAX_LENGTH from '../../utils/constants';
 import { addDataToLocalStorage, getDataFromLocalStorage } from '../../utils/helpers';
 import Footer from '../Footer';

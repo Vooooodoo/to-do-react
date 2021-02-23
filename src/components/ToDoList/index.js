@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ToDoItemsContext } from '../../contexts/ToDoItemsContext';
+import ToDoItemsContext from '../../contexts/ToDoItemsContext';
 import Input from '../Input';
 import ToDoItem from '../ToDoItem';
 
