@@ -18,6 +18,7 @@ class App extends React.Component {
       isEditInputMaxLength: false,
       toDoItems: [],
       radioValue: 'All',
+      isAllChecked: false,
     };
   }
 
@@ -102,6 +103,33 @@ class App extends React.Component {
     this.saveData(newToDoItems);
   }
 
+  handleCheckAll = () => {
+    const isEveryActive = this.state.toDoItems.every(item => !item.isCompleted);
+    const isEveryCompleted = this.state.toDoItems.every(item => item.isCompleted);
+    const isSomeActive = this.state.toDoItems.some(item => !item.isCompleted);
+    const isSomeCompleted = this.state.toDoItems.some(item => item.isCompleted);
+
+    if (isEveryActive || isEveryCompleted) {
+      const newToDoItems = this.state.toDoItems.map(item => {
+        item.isCompleted = !item.isCompleted;
+
+        return item;
+      });
+
+      this.saveData(newToDoItems);
+    }
+
+    if (isSomeActive && isSomeCompleted) {
+      const newToDoItems = this.state.toDoItems.map(item => {
+        item.isCompleted = true;
+
+        return item;
+      });
+
+      this.saveData(newToDoItems);
+    }
+  }
+
   deleteToDoItem = (evtTargetId) => {
     const newToDoItems = this.state.toDoItems.filter(item => evtTargetId !== item.id);
 
@@ -176,9 +204,11 @@ class App extends React.Component {
           onEditInputChange={this.handleEditInputChange}
           onKeyDown={this.handleEnter}
           onCheckboxChange={this.handleCheckbox}
+          onCheckAllChange={this.handleCheckAll}
           onDelBtnClick={this.deleteToDoItem}
           onToDoItemDblClick={this.handleEdetingDblClick}
           onBlur={this.handleInputBlur}
+          isAllChecked={this.state.isAllChecked}
         />
         {Boolean(this.state.toDoItems.length) && (
           <Footer

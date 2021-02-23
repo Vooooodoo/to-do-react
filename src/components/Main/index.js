@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from '../Input';
 import ToDoList from '../ToDoList';
+import Checkbox from '../Checkbox';
 
 function Main(props) {
   return (
@@ -12,6 +13,12 @@ function Main(props) {
         onChange={props.onCreateInputChange}
         onKeyDown={props.onKeyDown}
         onBlur={props.onBlur}
+        children={
+          <Checkbox
+            onCheckboxChange={props.onCheckAllChange}
+            isChecked={props.isAllChecked}
+          />
+        }
       />
       <ToDoList
         inputValue={props.editInputValue}
