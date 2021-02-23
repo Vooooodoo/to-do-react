@@ -16,6 +16,10 @@ const StyledInput = styled.input`
   margin-bottom: 1px;
   outline-color: ${props => props.isMaxLength ? '#af1045' : 'black'};
   color: ${props => props.isMaxLength ? '#af1045' : 'black'};
+
+  @media all and (max-width: 424px) {
+    font-size: 20px;
+  }
 `;
 
 const ValidationMessage = styled.p`

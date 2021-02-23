@@ -16,7 +16,7 @@ function Main(props) {
         children={Boolean(props.toDoItems.length) && (
           <Checkbox
             onCheckboxChange={props.onCheckAllChange}
-            isChecked={props.isAllChecked}
+            isChecked={props.isAllCompleted}
           />
         )}
       />

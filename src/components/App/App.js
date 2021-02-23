@@ -18,7 +18,7 @@ class App extends React.Component {
       isEditInputMaxLength: false,
       toDoItems: [],
       radioValue: 'All',
-      isAllChecked: false,
+      isAllCompleted: false,
     };
   }
 
@@ -49,11 +49,11 @@ class App extends React.Component {
     });
   }
 
-  setisIsAllChecked = (arr) => {
-    const isEveryCompleted = arr.every(item => item.isCompleted);
+  setIsAllCompleted = (arr) => {
+    const isAllCompleted = arr.every(item => item.isCompleted);
 
     this.setState({
-      isAllChecked: isEveryCompleted,
+      isAllCompleted: isAllCompleted,
     });
   }
 
@@ -96,37 +96,37 @@ class App extends React.Component {
       }
       const newToDoItems = [newToDoItem, ...this.state.toDoItems];
 
-      addDataToLocalStorage(newToDoItems);
-      this.setisIsAllChecked(newToDoItems);
+      this.setIsAllCompleted(newToDoItems);
       this.setState({
         createInputValue: '',
         toDoItems: newToDoItems,
         isCreateInputMaxLength: false,
       });
+      addDataToLocalStorage(newToDoItems);
     }
   }
 
   handleCheckbox = (evt, evtTargetId) => {
     const newToDoItems = this.createNewToDoItemsArr('isCompleted', evt.target.checked, evtTargetId);
 
-    this.setisIsAllChecked(newToDoItems);
+    this.setIsAllCompleted(newToDoItems);
     this.saveData(newToDoItems);
   }
 
   handleCheckAll = () => {
-    const isEveryActive = this.state.toDoItems.every(item => !item.isCompleted);
-    const isEveryCompleted = this.state.toDoItems.every(item => item.isCompleted);
+    const isAllActive = this.state.toDoItems.every(item => !item.isCompleted);
+    const isAllCompleted = this.state.toDoItems.every(item => item.isCompleted);
     const isSomeActive = this.state.toDoItems.some(item => !item.isCompleted);
     const isSomeCompleted = this.state.toDoItems.some(item => item.isCompleted);
 
-    if (isEveryActive || isEveryCompleted) {
+    if (isAllActive || isAllCompleted) {
       const newToDoItems = this.state.toDoItems.map(item => {
         item.isCompleted = !item.isCompleted;
 
         return item;
       });
 
-      this.setisIsAllChecked(newToDoItems);
+      this.setIsAllCompleted(newToDoItems);
       this.saveData(newToDoItems);
     }
 
@@ -137,7 +137,7 @@ class App extends React.Component {
         return item;
       });
 
-      this.setisIsAllChecked(newToDoItems);
+      this.setIsAllCompleted(newToDoItems);
       this.saveData(newToDoItems);
     }
   }
@@ -181,7 +181,6 @@ class App extends React.Component {
     this.setState({
       editInputValue: editableText,
     });
-
     this.saveData(newToDoItems);
   }
 
@@ -212,7 +211,7 @@ class App extends React.Component {
           isCreateInputMaxLength={this.state.isCreateInputMaxLength}
           editInputValue={this.state.editInputValue}
           isEditInputMaxLength={this.state.isEditInputMaxLength}
-          isAllChecked={this.state.isAllChecked}
+          isAllCompleted={this.state.isAllCompleted}
           toDoItems={this.state.toDoItems}
           onCreateInputChange={this.handleCreateInputChange}
           onEditInputChange={this.handleEditInputChange}
