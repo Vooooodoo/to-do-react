@@ -49,6 +49,14 @@ class App extends React.Component {
     });
   }
 
+  setisIsAllChecked = (arr) => {
+    const isEveryCompleted = arr.every(item => item.isCompleted);
+
+    this.setState({
+      isAllChecked: isEveryCompleted,
+    });
+  }
+
   handleCreateInputChange = (evt) => {
     if (evt.target.value.length > MAX_LENGTH) {
       this.setState({
@@ -89,6 +97,7 @@ class App extends React.Component {
       const newToDoItems = [newToDoItem, ...this.state.toDoItems];
 
       addDataToLocalStorage(newToDoItems);
+      this.setisIsAllChecked(newToDoItems);
       this.setState({
         createInputValue: '',
         toDoItems: newToDoItems,
@@ -100,6 +109,7 @@ class App extends React.Component {
   handleCheckbox = (evt, evtTargetId) => {
     const newToDoItems = this.createNewToDoItemsArr('isCompleted', evt.target.checked, evtTargetId);
 
+    this.setisIsAllChecked(newToDoItems);
     this.saveData(newToDoItems);
   }
 
@@ -116,6 +126,7 @@ class App extends React.Component {
         return item;
       });
 
+      this.setisIsAllChecked(newToDoItems);
       this.saveData(newToDoItems);
     }
 
@@ -126,6 +137,7 @@ class App extends React.Component {
         return item;
       });
 
+      this.setisIsAllChecked(newToDoItems);
       this.saveData(newToDoItems);
     }
   }
@@ -200,6 +212,8 @@ class App extends React.Component {
           isCreateInputMaxLength={this.state.isCreateInputMaxLength}
           editInputValue={this.state.editInputValue}
           isEditInputMaxLength={this.state.isEditInputMaxLength}
+          isAllChecked={this.state.isAllChecked}
+          toDoItems={this.state.toDoItems}
           onCreateInputChange={this.handleCreateInputChange}
           onEditInputChange={this.handleEditInputChange}
           onKeyDown={this.handleEnter}
@@ -208,7 +222,6 @@ class App extends React.Component {
           onDelBtnClick={this.deleteToDoItem}
           onToDoItemDblClick={this.handleEdetingDblClick}
           onBlur={this.handleInputBlur}
-          isAllChecked={this.state.isAllChecked}
         />
         {Boolean(this.state.toDoItems.length) && (
           <Footer
