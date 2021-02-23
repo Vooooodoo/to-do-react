@@ -23,7 +23,7 @@ function Input(props) {
     <section>
       <StyledInput
         type="text"
-        autoFocus={props.autofocus}
+        autoFocus={props.isAutofocus}
         placeholder={props.placeholder}
         value={props.inputValue}
         isMaxLength={props.isMaxLength}

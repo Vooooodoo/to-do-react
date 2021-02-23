@@ -77,8 +77,8 @@ function Footer(props) {
         <Radio
           id="radio-all"
           text="All"
-          isChecked
           onRadioChange={props.onRadioChange}
+          isChecked
         />
         <Radio
           id="radio-active"
