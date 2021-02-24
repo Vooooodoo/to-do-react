@@ -13,13 +13,14 @@ function Main(props) {
         onChange={props.onCreateInputChange}
         onKeyDown={props.onKeyDown}
         onBlur={props.onBlur}
-        children={Boolean(props.toDoItems.length) && (
+      >
+        {Boolean(props.toDoItems.length) && (
           <Checkbox
             onCheckboxChange={props.onCheckAllChange}
             isChecked={props.isAllCompleted}
           />
         )}
-      />
+      </Input>
       <ToDoList
         inputValue={props.editInputValue}
         isEditInputMaxLength={props.isEditInputMaxLength}

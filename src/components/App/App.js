@@ -114,32 +114,15 @@ class App extends React.Component {
   }
 
   handleCheckAll = () => {
-    const isAllActive = this.state.toDoItems.every(item => !item.isCompleted);
     const isAllCompleted = this.state.toDoItems.every(item => item.isCompleted);
-    const isSomeActive = this.state.toDoItems.some(item => !item.isCompleted);
-    const isSomeCompleted = this.state.toDoItems.some(item => item.isCompleted);
+    const newToDoItems = this.state.toDoItems.map(item => {
+      item.isCompleted = !isAllCompleted;
 
-    if (isAllActive || isAllCompleted) {
-      const newToDoItems = this.state.toDoItems.map(item => {
-        item.isCompleted = !item.isCompleted;
+      return item;
+    });
 
-        return item;
-      });
-
-      this.setIsAllCompleted(newToDoItems);
-      this.saveData(newToDoItems);
-    }
-
-    if (isSomeActive && isSomeCompleted) {
-      const newToDoItems = this.state.toDoItems.map(item => {
-        item.isCompleted = true;
-
-        return item;
-      });
-
-      this.setIsAllCompleted(newToDoItems);
-      this.saveData(newToDoItems);
-    }
+    this.setIsAllCompleted(newToDoItems);
+    this.saveData(newToDoItems);
   }
 
   deleteToDoItem = (evtTargetId) => {
@@ -149,23 +132,9 @@ class App extends React.Component {
   }
 
   handleRadio = (evt) => {
-    if (evt.target.value === 'All') {
-      this.setState({
-        radioValue: 'All',
-      });
-    }
-
-    if (evt.target.value === 'Active') {
-      this.setState({
-        radioValue: 'Active',
-      });
-    }
-
-    if (evt.target.value === 'Completed') {
-      this.setState({
-        radioValue: 'Completed',
-      });
-    }
+    this.setState({
+      radioValue: evt.target.value,
+    });
   }
 
   handleClearCompletedBtn = () => {
@@ -176,7 +145,7 @@ class App extends React.Component {
 
   handleEdetingDblClick = (evtTargetId) => {
     const newToDoItems = this.createNewToDoItemsArr('isEditable', true, evtTargetId);
-    const editableText = newToDoItems.filter(item => item.isEditable)[0].text;
+    const editableText = newToDoItems.find(item => item.isEditable).text;
 
     this.setState({
       editInputValue: editableText,
